@@ -44,7 +44,7 @@ $rol = $_SESSION['ID_Rol']
             <!-- Sidebar - Brand -->
             <a class="sidebar-brand d-flex align-items-center justify-content-center" href="index.php">
                 <div class="sidebar-brand-icon rotate-n-15">
-                    <i class="fas fa-laugh-wink"></i>
+                    <img src="./img/esfim_logo.png"alt="ESFIM Logo" class="img-fluid sidebar-logo" style="max-width: 60px; height: auto;" srcset="">
                 </div>
                 <div class="sidebar-brand-text mx-3">ESFIM</div>
             </a>
@@ -345,10 +345,7 @@ $rol = $_SESSION['ID_Rol']
                     <!-- Begin Page Content -->
                     <div class="container-fluid">
 
-
-
-
-
+                    <h1 class="h3 mb-4 text-gray-800">Blank Page</h1>
 
                     </div>
                     <!-- /.container-fluid -->
