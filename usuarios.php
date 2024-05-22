@@ -352,18 +352,27 @@ $nombre = $_SESSION['nombre'];
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    <tr>
-                                        <td>1</td>
-                                        <td>Luis Fernando</td>
-                                        <td>luis.barrios</td>
-                                        <td>Luifer#1910</td>
-                                        <td>Administrador</td>
-                                        <td>
-                                            <!-- Anclas movidos dentro de la celda de "Acciones" -->
-                                            <a href="#" class="btn btn-warning ">Editar</a>
-                                            <a href="#" class="btn btn-danger ">Eliminar</a>
-                                        </td>
-                                    </tr>
+                                    <?php
+                                    include "./conexion.php";
+                                    $sql = $mysqli->query("SELECT * FROM usuarios");
+                                    while ($datos = $sql->fetch_object()) { ?>
+
+                                        <tr>
+                                            <td>1</td>
+                                            <td>Luis Fernando</td>
+                                            <td>luis.barrios</td>
+                                            <td>Luifer#1910</td>
+                                            <td>Administrador</td>
+                                            <td>
+                                                <!-- Anclas movidos dentro de la celda de "Acciones" -->
+                                                <a href="#" class="btn btn-warning ">Editar</a>
+                                                <a href="#" class="btn btn-danger ">Eliminar</a>
+                                            </td>
+                                        </tr>
+
+                                    <?php }
+                                    ?>
+
                                 </tbody>
                             </table>
 
@@ -377,32 +386,35 @@ $nombre = $_SESSION['nombre'];
                                             <h1 class="modal-title fs-5" id="staticBackdropLabel">Agregar Usuario</h1>
 
                                         </div>
-                                        <div class="modal-body">
-                                            <div class="mb-3">
-                                                <label for="exampleFormControlInput1" class="form-label">Nombre Completo</label>
-                                                <input type="text" class="form-control" id="exampleFormControlInput1" placeholder="Nombre">
+                                        <form method="POST" action="./agregar_usuario.php">
+                                            <div class="modal-body">
+                                                <div class="mb-3">
+                                                    <label class="form-label">Nombre Completo</label>
+                                                    <input type="text" class="form-control" name="nombre" placeholder="Nombre">
+                                                </div>
+                                                <div class="mb-3">
+                                                    <label class="form-label">Usuario</label>
+                                                    <input type="text" class="form-control" name="usuario" placeholder="Usuario">
+                                                </div>
+                                                <div class="mb-3">
+                                                    <label class="form-label">Password</label>
+                                                    <input type="text" class="form-control" name="contraseña" placeholder="Password">
+                                                </div>
+
+                                                <div class="mb-3">
+                                                    <label class="form-label">Rol</label>
+                                                    <select class="form-select" name="rol" id="">
+                                                        <option value="1">1- Administrador</option>
+                                                        <option value="2">2- Observador</option>
+                                                    </select>
+                                                </div>
                                             </div>
-                                            <div class="mb-3">
-                                                <label for="exampleFormControlInput1" class="form-label">Usuario</label>
-                                                <input type="text" class="form-control" id="exampleFormControlInput1" placeholder="Usuario">
+                                            <div class="modal-footer">
+                                                <button type="submit" class="btn btn-success" name="btnAgregarUsuario">Agregar</button>
+                                                <button type="button" class="btn btn-danger" data-bs-dismiss="modal" name="btnEliminarUsuario">Close</button>
+
                                             </div>
-                                            <div class="mb-3">
-                                                <label for="exampleFormControlInput1" class="form-label">Password</label>
-                                                <input type="text" class="form-control" id="exampleFormControlInput1" placeholder="Password">
-                                            </div>
-                                            <div class="mb-3">
-                                                <label for="exampleFormControlInput1" class="form-label">Confirm Password</label>
-                                                <input type="text" class="form-control" id="exampleFormControlInput1" placeholder="Confirm password">
-                                            </div>
-                                            <div class="mb-3">
-                                                <label for="exampleFormControlInput1" class="form-label">Rol</label>
-                                                <input type="text" class="form-control" id="exampleFormControlInput1" placeholder="Rol">
-                                            </div>
-                                        </div>
-                                        <div class="modal-footer">
-                                            <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Close</button>
-                                            <button type="button" class="btn btn-success">Agregar</button>
-                                        </div>
+                                        </form>
                                     </div>
                                 </div>
                             </div>
