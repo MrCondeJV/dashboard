@@ -1,10 +1,9 @@
 <?php
 session_start();
 
-if(!isset($_SESSION['id'])){
+if (!isset($_SESSION['id'])) {
     header("Location: index.php");
     exit();
-
 }
 
 
@@ -28,9 +27,15 @@ $nombre = $_SESSION['nombre'];
     <!-- Custom fonts for this template-->
     <link href="vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
     <link href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i" rel="stylesheet">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+
+
+
+
 
     <!-- Custom styles for this template-->
     <link href="css/sb-admin-2.min.css" rel="stylesheet">
+
 </head>
 
 <body id="page-top">
@@ -44,7 +49,7 @@ $nombre = $_SESSION['nombre'];
             <!-- Sidebar - Brand -->
             <a class="sidebar-brand d-flex align-items-center justify-content-center" href="index.php">
                 <div class="sidebar-brand-icon rotate-n-15">
-                    <img src="./img/esfim_logo.png"alt="ESFIM Logo" class="img-fluid sidebar-logo" style="max-width: 60px; height: auto;" srcset="">
+                    <img src="./img/esfim_logo.png" alt="ESFIM Logo" class="img-fluid sidebar-logo" style="max-width: 60px; height: auto;" srcset="">
                 </div>
                 <div class="sidebar-brand-text mx-3">ESFIM</div>
             </a>
@@ -111,22 +116,6 @@ $nombre = $_SESSION['nombre'];
 
         </ul>
         <!-- End of Sidebar -->
-
-        <!-- Formulario -->
-
-
-
-
-
-
-
-
-        <!-- Fin Formulario -->
-
-
-
-
-
 
 
         <!-- Content Wrapper -->
@@ -330,21 +319,98 @@ $nombre = $_SESSION['nombre'];
 
                     <!-- Page Heading -->
                     <div class="d-sm-flex align-items-center justify-content-between mb-4">
-                        <h1 class="h3 mb-0 text-gray-800">Usuarios</h1>
+                        <h2>Administracion de <b>Usuarios</b></h2>
                         <a href="#" class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm"><i class="fas fa-download fa-sm text-white-50"></i> Generar Reporte</a>
                     </div>
 
-
-                    <!-- Begin Page Content -->
-                    <div class="container-fluid">
+                    <!-- TABLA CRUD DE USUARIOS -->
 
 
 
+                    <div class="card mt-3 shadow p-3 mb-5 bg-body-tertiary rounded border-left-primary">
+
+                        <div class="card-header bg-primary text-white  ">
+                            Tabla de Usuarios
+
+                        </div>
+                        <div class="card-body ">
+
+                            <!-- Button trigger modal -->
+                            <button type="button" class="btn btn-success mb-3" data-bs-toggle="modal" data-bs-target="#staticBackdrop">
+                                Agregar usuario
+                            </button>
+
+                            <table class="table table-bordered table-striped table-hover">
+                                <thead>
+                                    <tr>
+                                        <th>ID</th>
+                                        <th>Nombre</th>
+                                        <th>Usuario</th>
+                                        <th>Contraseña</th>
+                                        <th>Rol</th>
+                                        <th>Acciones</th> <!-- Cambiado de "" a "Acciones" -->
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td>1</td>
+                                        <td>Luis Fernando</td>
+                                        <td>luis.barrios</td>
+                                        <td>Luifer#1910</td>
+                                        <td>Administrador</td>
+                                        <td>
+                                            <!-- Anclas movidos dentro de la celda de "Acciones" -->
+                                            <a href="#" class="btn btn-warning ">Editar</a>
+                                            <a href="#" class="btn btn-danger ">Eliminar</a>
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
 
 
 
+                            <!-- Dialogo de Confirmacion para agregarUsuario -->
+                            <div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+                                <div class="modal-dialog">
+                                    <div class="modal-content">
+                                        <div class="modal-header">
+                                            <h1 class="modal-title fs-5" id="staticBackdropLabel">Agregar Usuario</h1>
+
+                                        </div>
+                                        <div class="modal-body">
+                                            <div class="mb-3">
+                                                <label for="exampleFormControlInput1" class="form-label">Nombre Completo</label>
+                                                <input type="text" class="form-control" id="exampleFormControlInput1" placeholder="Nombre">
+                                            </div>
+                                            <div class="mb-3">
+                                                <label for="exampleFormControlInput1" class="form-label">Usuario</label>
+                                                <input type="text" class="form-control" id="exampleFormControlInput1" placeholder="Usuario">
+                                            </div>
+                                            <div class="mb-3">
+                                                <label for="exampleFormControlInput1" class="form-label">Password</label>
+                                                <input type="text" class="form-control" id="exampleFormControlInput1" placeholder="Password">
+                                            </div>
+                                            <div class="mb-3">
+                                                <label for="exampleFormControlInput1" class="form-label">Confirm Password</label>
+                                                <input type="text" class="form-control" id="exampleFormControlInput1" placeholder="Confirm password">
+                                            </div>
+                                            <div class="mb-3">
+                                                <label for="exampleFormControlInput1" class="form-label">Rol</label>
+                                                <input type="text" class="form-control" id="exampleFormControlInput1" placeholder="Rol">
+                                            </div>
+                                        </div>
+                                        <div class="modal-footer">
+                                            <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Close</button>
+                                            <button type="button" class="btn btn-success">Agregar</button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
                     </div>
-                    <!-- /.container-fluid -->
+                    <!-- FIN Dialogo de Confirmacion para agregarUsuario -->
+
+
 
                 </div>
                 <!-- End of Main Content -->
@@ -393,19 +459,14 @@ $nombre = $_SESSION['nombre'];
         <script src="vendor/jquery/jquery.min.js"></script>
         <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
 
+
+
         <!-- Core plugin JavaScript-->
         <script src="vendor/jquery-easing/jquery.easing.min.js"></script>
 
         <!-- Custom scripts for all pages-->
-        <script src="js/sb-admin-2.min.js"></script>
 
-        <!-- Page level plugins -->
-        <script src="vendor/chart.js/Chart.min.js"></script>
-
-        <!-- Page level custom scripts -->
-        <script src="js/demo/chart-area-demo.js"></script>
-        <script src="js/demo/chart-pie-demo.js"></script>
-
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
 </body>
 
 </html>
