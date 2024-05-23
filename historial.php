@@ -24,9 +24,10 @@ $nombre = $_SESSION['nombre'];
 
     <title>Historial | ESFIM</title>
 
-    <!-- Custom fonts for this template-->
-    <link href="vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
+     <!-- Custom fonts for this template-->
+     <link href="vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
     <link href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i" rel="stylesheet">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
 
     <!-- Custom styles for this template-->
     <link href="css/sb-admin-2.min.css" rel="stylesheet">
@@ -333,16 +334,95 @@ $nombre = $_SESSION['nombre'];
                     </div>
 
 
-                    <!-- Begin Page Content -->
-                    <div class="container-fluid">
+                    <div class="card mt-3 shadow p-3 mb-5 bg-body-tertiary rounded border-left-info">
+
+                        <div class="card-header bg-primary text-white  ">
+                            Historial de Prestamos
+
+                        </div>
+                        <div class="card-body ">
 
 
 
+                            <table class="table table-bordered table-striped table-hover">
+                                <thead>
+                                    <tr>
+                                        <th>ID</th>
+                                        <th>Codigo Ticket</th>
+                                        <th>Fecha Prestamo</th>
+                                        <th>Solicitante</th>
+                                        <th>Aula Solicitada</th>
+                                        <th>Aprueba</th>
+                                        <th>Acciones</th> <!-- Cambiado de "" a "Acciones" -->
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <?php
+                                    include "./conexion.php";
+                                    $sql = $mysqli->query("SELECT * FROM usuarios");
+                                    while ($datos = $sql->fetch_object()) { ?>
+
+                                        <tr>
+                                            <td></td>
+                                            <td></td>
+                                            <td></td>
+                                            <td></td>
+                                            <td></td>
+                                            <td></td>
+                                            <td>
+                                                <a href="#" class="btn btn-info" data-bs-toggle="modal" data-bs-target="#staticBackdrop">Ver detalle</a>
+                                                
+                                            </td>
+
+                                        </tr>
+
+                                    <?php }
+                                    ?>
+
+                                </tbody>
+                            </table>
 
 
 
+                            <!-- Dialogo de Confirmacion para agregarUsuario -->
+                            <div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+                                <div class="modal-dialog">
+                                    <div class="modal-content">
+                                        <div class="modal-header">
+                                            <h1 class="modal-title fs-5" id="staticBackdropLabel">Información del Prestamo</h1>
+
+                                        </div>
+                                        <form method="POST" action="./agregar_usuario.php">
+                                            <div class="modal-body">
+                                                <div class="mb-3">
+                                                    <label class="form-label">Nombre Completo</label>
+                                                    <input type="text" class="form-control" name="nombre" placeholder="Nombre">
+                                                </div>
+                                                <div class="mb-3">
+                                                    <label class="form-label">Usuario</label>
+                                                    <input type="text" class="form-control" name="usuario" placeholder="Usuario">
+                                                </div>
+                                                <div class="mb-3">
+                                                    <label class="form-label">Password</label>
+                                                    <input type="text" class="form-control" name="contraseña" placeholder="Password">
+                                                </div>
+
+                                                <div class="mb-3">
+                                                    <label class="form-label">Rol</label>
+                                                    <input type="text" class="form-control" name="rol" placeholder="Rol">
+                                                </div>
+                                            </div>
+                                            <div class="modal-footer">
+                                                
+                                                <button type="button" class="btn btn-danger" data-bs-dismiss="modal" name="btnEliminarUsuario">Close</button>
+
+                                            </div>
+                                        </form>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
                     </div>
-                    <!-- /.container-fluid -->
 
                 </div>
                 <!-- End of Main Content -->
@@ -387,22 +467,18 @@ $nombre = $_SESSION['nombre'];
             </div>
         </div>
 
-        <!-- Bootstrap core JavaScript-->
-        <script src="vendor/jquery/jquery.min.js"></script>
+          <!-- Bootstrap core JavaScript-->
+          <script src="vendor/jquery/jquery.min.js"></script>
         <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+
+
 
         <!-- Core plugin JavaScript-->
         <script src="vendor/jquery-easing/jquery.easing.min.js"></script>
 
         <!-- Custom scripts for all pages-->
-        <script src="js/sb-admin-2.min.js"></script>
 
-        <!-- Page level plugins -->
-        <script src="vendor/chart.js/Chart.min.js"></script>
-
-        <!-- Page level custom scripts -->
-        <script src="js/demo/chart-area-demo.js"></script>
-        <script src="js/demo/chart-pie-demo.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
 
 </body>
 

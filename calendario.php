@@ -32,15 +32,13 @@ $nombre = $_SESSION['nombre'];
     <link href="css/sb-admin-2.min.css" rel="stylesheet">
     <script src="https://cdn.jsdelivr.net/npm/fullcalendar@6.1.11/index.global.min.js"></script>
     <script>
-
-      document.addEventListener('DOMContentLoaded', function() {
-        const calendarEl = document.getElementById('calendar')
-        const calendar = new FullCalendar.Calendar(calendarEl, {
-          initialView: 'dayGridMonth'
+        document.addEventListener('DOMContentLoaded', function() {
+            const calendarEl = document.getElementById('calendar')
+            const calendar = new FullCalendar.Calendar(calendarEl, {
+                initialView: 'dayGridMonth'
+            })
+            calendar.render()
         })
-        calendar.render()
-      })
-
     </script>
 </head>
 
@@ -55,7 +53,7 @@ $nombre = $_SESSION['nombre'];
             <!-- Sidebar - Brand -->
             <a class="sidebar-brand d-flex align-items-center justify-content-center" href="index.php">
                 <div class="sidebar-brand-icon rotate-n-15">
-                    <img src="./img/esfim_logo.png"alt="ESFIM Logo" class="img-fluid sidebar-logo" style="max-width: 60px; height: auto;" srcset="">
+                    <img src="./img/esfim_logo.png" alt="ESFIM Logo" class="img-fluid sidebar-logo" style="max-width: 60px; height: auto;" srcset="">
                 </div>
                 <div class="sidebar-brand-text mx-3">ESFIM</div>
             </a>
@@ -334,22 +332,16 @@ $nombre = $_SESSION['nombre'];
 
 
                     <!-- Begin Page Content -->
-                    <div class="container-fluid">
 
-                    <div id='calendar'></div>
-
-                    
-
-
-
-
-
+                    <div class="card mt-3 shadow p-3 mb-5 bg-body-tertiary rounded border-left-info">
+                        <div id='calendar'></div>
 
 
                     </div>
-                    <!-- /.container-fluid -->
-
                 </div>
+
+                <!-- /.container-fluid -->
+
                 <!-- End of Main Content -->
 
                 <!-- Footer -->
@@ -408,7 +400,7 @@ $nombre = $_SESSION['nombre'];
         <!-- Page level custom scripts -->
         <script src="js/demo/chart-area-demo.js"></script>
         <script src="js/demo/chart-pie-demo.js"></script>
-     
+
 
 </body>
 

@@ -31,8 +31,6 @@ $nombre = $_SESSION['nombre'];
 
 
 
-
-
     <!-- Custom styles for this template-->
     <link href="css/sb-admin-2.min.css" rel="stylesheet">
 
@@ -358,14 +356,14 @@ $nombre = $_SESSION['nombre'];
                                     while ($datos = $sql->fetch_object()) { ?>
 
                                         <tr>
-                                            <td>1</td>
-                                            <td>Luis Fernando</td>
-                                            <td>luis.barrios</td>
-                                            <td>Luifer#1910</td>
-                                            <td>Administrador</td>
+                                            <td><?php echo $datos->ID ?></td>
+                                            <td><?php echo $datos->Nombre ?></td>
+                                            <td><?php echo $datos->Usuario ?></td>
+                                            <td><?php echo $datos->contrasena ?></td>
+                                            <td><?php echo $datos->ID_Rol ?></td>
                                             <td>
                                                 <!-- Anclas movidos dentro de la celda de "Acciones" -->
-                                                <a href="#" class="btn btn-warning ">Editar</a>
+                                                <a href="#" class="btn btn-warning " data-bs-toggle="modal" data-bs-target="#staticBackdropMod">Editar</a>
                                                 <a href="#" class="btn btn-danger ">Eliminar</a>
                                             </td>
                                         </tr>
@@ -423,6 +421,51 @@ $nombre = $_SESSION['nombre'];
                     <!-- FIN Dialogo de Confirmacion para agregarUsuario -->
 
 
+                    
+                    <!-- Dialogo de Confirmacion para Modificar Usuario -->
+                    <div class="modal fade" id="staticBackdropMod" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+                                <div class="modal-dialog">
+                                    <div class="modal-content">
+                                        <div class="modal-header">
+                                            <h1 class="modal-title fs-5" id="staticBackdropLabel">Modificar Usuario</h1>
+
+                                        </div>
+                                        <form method="POST" action="./modificiar_usuario.php">
+                                            <div class="modal-body">
+                                                <div class="mb-3">
+                                                    <label class="form-label">Nombre Completo</label>
+                                                    <input type="text" class="form-control" name="nombre" placeholder="Nombre">
+                                                </div>
+                                                <div class="mb-3">
+                                                    <label class="form-label">Usuario</label>
+                                                    <input type="text" class="form-control" name="usuario" placeholder="Usuario">
+                                                </div>
+                                                <div class="mb-3">
+                                                    <label class="form-label">Password</label>
+                                                    <input type="text" class="form-control" name="contraseña" placeholder="Password">
+                                                </div>
+
+                                                <div class="mb-3">
+                                                    <label class="form-label">Rol</label>
+                                                    <select class="form-select" name="rol" id="">
+                                                        <option value="1">1- Administrador</option>
+                                                        <option value="2">2- Observador</option>
+                                                    </select>
+                                                </div>
+                                            </div>
+                                            <div class="modal-footer">
+                                                <button type="submit" class="btn btn-warning" name="btnModificarUsuario">Modificar</button>
+                                                <button type="button" class="btn btn-danger" data-bs-dismiss="modal" name="btnCerrar">Close</button>
+
+                                            </div>
+                                        </form>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                   
+                    <!-- FIN Dialogo de Confirmacion para Modificar Usuario -->
+
 
                 </div>
                 <!-- End of Main Content -->
@@ -467,8 +510,8 @@ $nombre = $_SESSION['nombre'];
             </div>
         </div>
 
-        <!-- Bootstrap core JavaScript-->
-        <script src="vendor/jquery/jquery.min.js"></script>
+         <!-- Bootstrap core JavaScript-->
+         <script src="vendor/jquery/jquery.min.js"></script>
         <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
 
 

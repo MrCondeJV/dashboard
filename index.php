@@ -70,7 +70,7 @@ $rol = $_SESSION['ID_Rol']
             </div>
 
 
-            <?php if ($rol == 1) { ?>;
+            <?php if ($rol == 1) { ?>
 
             <!-- Nav Item - Charts -->
             <li class="nav-item">

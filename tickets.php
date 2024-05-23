@@ -1,10 +1,9 @@
 <?php
 session_start();
 
-if(!isset($_SESSION['id'])){
+if (!isset($_SESSION['id'])) {
     header("Location: index.php");
     exit();
-
 }
 
 
@@ -44,7 +43,7 @@ $nombre = $_SESSION['nombre'];
             <!-- Sidebar - Brand -->
             <a class="sidebar-brand d-flex align-items-center justify-content-center" href="index.php">
                 <div class="sidebar-brand-icon rotate-n-15">
-                    <img src="./img/esfim_logo.png"alt="ESFIM Logo" class="img-fluid sidebar-logo" style="max-width: 60px; height: auto;" srcset="">
+                    <img src="./img/esfim_logo.png" alt="ESFIM Logo" class="img-fluid sidebar-logo" style="max-width: 60px; height: auto;" srcset="">
                 </div>
                 <div class="sidebar-brand-text mx-3">ESFIM</div>
             </a>
@@ -70,8 +69,8 @@ $nombre = $_SESSION['nombre'];
             </div>
 
 
-             <!-- Nav Item - Charts -->
-             <li class="nav-item">
+            <!-- Nav Item - Charts -->
+            <li class="nav-item">
                 <a class="nav-link" href="usuarios.php">
                     <i class="fas fa-fw fa-users"></i>
                     <span>Usuarios</span></a>
@@ -336,75 +335,156 @@ $nombre = $_SESSION['nombre'];
 
 
                     <!-- Begin Page Content -->
-                    <div class="container-fluid">
+
+                    <div class="card mt-3 shadow p-3 mb-5 bg-body-tertiary rounded border-left-warning">
+
+                        <div class="card-header bg-primary text-white  ">
+                            Tickets Pendientes
+
+                        </div>
+                        <div class="card-body ">
 
 
 
+                            <table class="table table-bordered table-striped table-hover">
+                                <thead>
+                                    <tr>
+                                        <th>ID</th>
+                                        <th>Codigo Ticket</th>
+                                        <th>Nombre TIcket</th>
+                                        <th>Fecha Prestamo</th>
+                                        <th>Solicitante</th>
+                                        <th>Aula Solicitada</th>
+                                        <th>Acciones</th> <!-- Cambiado de "" a "Acciones" -->
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <?php
+                                    include "./conexion.php";
+                                    $sql = $mysqli->query("SELECT * FROM usuarios");
+                                    while ($datos = $sql->fetch_object()) { ?>
+
+                                        <tr>
+                                            <td></td>
+                                            <td></td>
+                                            <td></td>
+                                            <td></td>
+                                            <td></td>
+                                            <td></td>
+                                            <td>
+                                                <a href="#" class="btn btn-success ">Aprovar</a>
+                                                <a href="#" class="btn btn-danger ">Rechazar</a>
+                                            </td>
+
+                                        </tr>
+
+                                    <?php }
+                                    ?>
+
+                                </tbody>
+                            </table>
 
 
 
-                    </div>
-                    <!-- /.container-fluid -->
+                            <!-- Dialogo de Confirmacion para agregarUsuario -->
+                            <div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+                                <div class="modal-dialog">
+                                    <div class="modal-content">
+                                        <div class="modal-header">
+                                            <h1 class="modal-title fs-5" id="staticBackdropLabel">Agregar Usuario</h1>
 
-                </div>
-                <!-- End of Main Content -->
+                                        </div>
+                                        <form method="POST" action="./agregar_usuario.php">
+                                            <div class="modal-body">
+                                                <div class="mb-3">
+                                                    <label class="form-label">Nombre Completo</label>
+                                                    <input type="text" class="form-control" name="nombre" placeholder="Nombre">
+                                                </div>
+                                                <div class="mb-3">
+                                                    <label class="form-label">Usuario</label>
+                                                    <input type="text" class="form-control" name="usuario" placeholder="Usuario">
+                                                </div>
+                                                <div class="mb-3">
+                                                    <label class="form-label">Password</label>
+                                                    <input type="text" class="form-control" name="contraseña" placeholder="Password">
+                                                </div>
 
-                <!-- Footer -->
-                <footer class="sticky-footer bg-white">
-                    <div class="container my-auto">
-                        <div class="copyright text-center my-auto">
-                            <span>Copyright &copy; División de Tecnologías de la Información y de las Comunicaciones ESFIM </span>
+                                                <div class="mb-3">
+                                                    <label class="form-label">Rol</label>
+                                                    <select class="form-select" name="rol" id="">
+                                                        <option value="1">1- Administrador</option>
+                                                        <option value="2">2- Observador</option>
+                                                    </select>
+                                                </div>
+                                            </div>
+                                            <div class="modal-footer">
+                                                <button type="submit" class="btn btn-success" name="btnAgregarUsuario">Agregar</button>
+                                                <button type="button" class="btn btn-danger" data-bs-dismiss="modal" name="btnEliminarUsuario">Close</button>
+
+                                            </div>
+                                        </form>
+                                    </div>
+                                </div>
+                            </div>
                         </div>
                     </div>
-                </footer>
-                <!-- End of Footer -->
+
+                    <!-- Footer -->
+                    <footer class="sticky-footer bg-white">
+                        <div class="container my-auto">
+                            <div class="copyright text-center my-auto">
+                                <span>Copyright &copy; División de Tecnologías de la Información y de las Comunicaciones ESFIM </span>
+                            </div>
+                        </div>
+                    </footer>
+                    <!-- End of Footer -->
+
+                </div>
+                <!-- End of Content Wrapper -->
 
             </div>
-            <!-- End of Content Wrapper -->
+            <!-- End of Page Wrapper -->
 
-        </div>
-        <!-- End of Page Wrapper -->
+            <!-- Scroll to Top Button-->
+            <a class="scroll-to-top rounded" href="#page-top">
+                <i class="fas fa-angle-up"></i>
+            </a>
 
-        <!-- Scroll to Top Button-->
-        <a class="scroll-to-top rounded" href="#page-top">
-            <i class="fas fa-angle-up"></i>
-        </a>
-
-        <!-- Logout Modal-->
-        <div class="modal fade" id="logoutModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-            <div class="modal-dialog" role="document">
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <h5 class="modal-title" id="exampleModalLabel">Desea Cerrar Sesión?</h5>
-                        <button class="close" type="button" data-dismiss="modal" aria-label="Close">
-                            <span aria-hidden="true">×</span>
-                        </button>
-                    </div>
-                    <div class="modal-body">Seleccione "Cerrar sesión" a continuación si está listo para finalizar su sesión actual.</div>
-                    <div class="modal-footer">
-                        <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancelar</button>
-                        <a class="btn btn-primary" href="./cerrar_sesion.php">Cerrar Sesión</a>
+            <!-- Logout Modal-->
+            <div class="modal fade" id="logoutModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                <div class="modal-dialog" role="document">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title" id="exampleModalLabel">Desea Cerrar Sesión?</h5>
+                            <button class="close" type="button" data-dismiss="modal" aria-label="Close">
+                                <span aria-hidden="true">×</span>
+                            </button>
+                        </div>
+                        <div class="modal-body">Seleccione "Cerrar sesión" a continuación si está listo para finalizar su sesión actual.</div>
+                        <div class="modal-footer">
+                            <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancelar</button>
+                            <a class="btn btn-primary" href="./cerrar_sesion.php">Cerrar Sesión</a>
+                        </div>
                     </div>
                 </div>
             </div>
-        </div>
 
-        <!-- Bootstrap core JavaScript-->
-        <script src="vendor/jquery/jquery.min.js"></script>
-        <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+            <!-- Bootstrap core JavaScript-->
+            <script src="vendor/jquery/jquery.min.js"></script>
+            <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
 
-        <!-- Core plugin JavaScript-->
-        <script src="vendor/jquery-easing/jquery.easing.min.js"></script>
+            <!-- Core plugin JavaScript-->
+            <script src="vendor/jquery-easing/jquery.easing.min.js"></script>
 
-        <!-- Custom scripts for all pages-->
-        <script src="js/sb-admin-2.min.js"></script>
+            <!-- Custom scripts for all pages-->
+            <script src="js/sb-admin-2.min.js"></script>
 
-        <!-- Page level plugins -->
-        <script src="vendor/chart.js/Chart.min.js"></script>
+            <!-- Page level plugins -->
+            <script src="vendor/chart.js/Chart.min.js"></script>
 
-        <!-- Page level custom scripts -->
-        <script src="js/demo/chart-area-demo.js"></script>
-        <script src="js/demo/chart-pie-demo.js"></script>
+            <!-- Page level custom scripts -->
+            <script src="js/demo/chart-area-demo.js"></script>
+            <script src="js/demo/chart-pie-demo.js"></script>
 
 </body>
 
