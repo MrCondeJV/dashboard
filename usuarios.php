@@ -2,12 +2,13 @@
 session_start();
 
 if (!isset($_SESSION['id'])) {
-    header("Location: index.php");
+    header("Location: login.php");
     exit();
 }
 
 
 $nombre = $_SESSION['nombre'];
+$rol = $_SESSION['ID_Rol']
 ?>
 
 
@@ -73,33 +74,38 @@ $nombre = $_SESSION['nombre'];
             </div>
 
 
-            <!-- Nav Item - Charts -->
-            <li class="nav-item">
-                <a class="nav-link" href="usuarios.php">
-                    <i class="fas fa-fw fa-users"></i>
-                    <span>Usuarios</span></a>
-            </li>
-
-            <!-- Nav Item - Tables -->
-            <li class="nav-item">
-                <a class="nav-link" href="historial.php">
-                    <i class="fas fa-fw fa-sitemap"></i>
-                    <span>Historial</span></a>
-            </li>
-
-            <!-- Nav Item - Tables -->
-            <li class="nav-item">
-                <a class="nav-link" href="tickets.php">
-                    <i class="fas fa-fw fa-tags"></i>
-                    <span>Tickets</span></a>
-            </li>
-
             <!-- Nav Item - Tables -->
             <li class="nav-item">
                 <a class="nav-link" href="calendario.php">
                     <i class="fas fa-fw fa-calendar-day"></i>
                     <span>Calendario</span></a>
             </li>
+
+            <?php if ($rol == 1) { ?>
+
+                <!-- Nav Item - Tables -->
+                <li class="nav-item">
+                    <a class="nav-link" href="tickets.php">
+                        <i class="fas fa-fw fa-tags"></i>
+                        <span>Tickets</span></a>
+                </li>
+
+                <!-- Nav Item - Tables -->
+                <li class="nav-item">
+                    <a class="nav-link" href="historial.php">
+                        <i class="fas fa-fw fa-sitemap"></i>
+                        <span>Historial</span></a>
+                </li>
+
+                <!-- Nav Item - Charts -->
+                <li class="nav-item">
+                    <a class="nav-link" href="usuarios.php">
+                        <i class="fas fa-fw fa-users"></i>
+                        <span>Usuarios</span></a>
+                </li>
+
+
+            <?php } ?>
 
 
             <!-- Divider -->
@@ -338,7 +344,8 @@ $nombre = $_SESSION['nombre'];
                                 Agregar usuario
                             </button>
 
-                            <table class="table table-bordered table-striped table-hover">
+                            <div class="table-responsive">
+                            <table class="table  table-bordered table-striped table-hover">
                                 <thead>
                                     <tr>
                                         <th>ID</th>
@@ -373,6 +380,7 @@ $nombre = $_SESSION['nombre'];
 
                                 </tbody>
                             </table>
+                            </div>
 
 
 
@@ -384,8 +392,14 @@ $nombre = $_SESSION['nombre'];
                                             <h1 class="modal-title fs-5" id="staticBackdropLabel">Agregar Usuario</h1>
 
                                         </div>
-                                        <form method="POST" action="./agregar_usuario.php">
+                                        <form method="POST">
+                                            
                                             <div class="modal-body">
+                                            <?php
+                                            include "./conexion.php";
+                                            include "./agregar_usuario.php";
+                                            
+                                            ?>
                                                 <div class="mb-3">
                                                     <label class="form-label">Nombre Completo</label>
                                                     <input type="text" class="form-control" name="nombre" placeholder="Nombre">
@@ -396,19 +410,19 @@ $nombre = $_SESSION['nombre'];
                                                 </div>
                                                 <div class="mb-3">
                                                     <label class="form-label">Password</label>
-                                                    <input type="text" class="form-control" name="contraseña" placeholder="Password">
+                                                    <input type="text" class="form-control" name="contrasena" placeholder="Password">
                                                 </div>
 
                                                 <div class="mb-3">
                                                     <label class="form-label">Rol</label>
                                                     <select class="form-select" name="rol" id="">
-                                                        <option value="1">1- Administrador</option>
-                                                        <option value="2">2- Observador</option>
+                                                        <option value="1" >1- Administrador</option>
+                                                        <option value="2" >2- Observador</option>
                                                     </select>
                                                 </div>
                                             </div>
                                             <div class="modal-footer">
-                                                <button type="submit" class="btn btn-success" name="btnAgregarUsuario">Agregar</button>
+                                                <button type="submit" class="btn btn-success" name="btnAgregarUsuario" value="ok">Agregar</button>
                                                 <button type="button" class="btn btn-danger" data-bs-dismiss="modal" name="btnEliminarUsuario">Close</button>
 
                                             </div>
@@ -421,7 +435,7 @@ $nombre = $_SESSION['nombre'];
                     <!-- FIN Dialogo de Confirmacion para agregarUsuario -->
 
 
-                    
+
                     <!-- Dialogo de Confirmacion para Modificar Usuario -->
                     <div class="modal fade" id="staticBackdropMod" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
                                 <div class="modal-dialog">

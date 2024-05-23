@@ -2,12 +2,13 @@
 session_start();
 
 if (!isset($_SESSION['id'])) {
-    header("Location: index.php");
+    header("Location: login.php");
     exit();
 }
 
 
 $nombre = $_SESSION['nombre'];
+$rol = $_SESSION['ID_Rol']
 ?>
 
 
@@ -79,33 +80,39 @@ $nombre = $_SESSION['nombre'];
             </div>
 
 
-            <!-- Nav Item - Charts -->
-            <li class="nav-item">
-                <a class="nav-link" href="usuarios.php">
-                    <i class="fas fa-fw fa-users"></i>
-                    <span>Usuarios</span></a>
-            </li>
-
-            <!-- Nav Item - Tables -->
-            <li class="nav-item">
-                <a class="nav-link" href="historial.php">
-                    <i class="fas fa-fw fa-sitemap"></i>
-                    <span>Historial</span></a>
-            </li>
-
-            <!-- Nav Item - Tables -->
-            <li class="nav-item">
-                <a class="nav-link" href="tickets.php">
-                    <i class="fas fa-fw fa-tags"></i>
-                    <span>Tickets</span></a>
-            </li>
-
-            <!-- Nav Item - Tables -->
-            <li class="nav-item">
+              <!-- Nav Item - Tables -->
+              <li class="nav-item">
                 <a class="nav-link" href="calendario.php">
                     <i class="fas fa-fw fa-calendar-day"></i>
                     <span>Calendario</span></a>
             </li>
+
+            <?php if ($rol == 1) { ?>
+
+                <!-- Nav Item - Tables -->
+                <li class="nav-item">
+                    <a class="nav-link" href="tickets.php">
+                        <i class="fas fa-fw fa-tags"></i>
+                        <span>Tickets</span></a>
+                </li>
+
+                <!-- Nav Item - Tables -->
+                <li class="nav-item">
+                    <a class="nav-link" href="historial.php">
+                        <i class="fas fa-fw fa-sitemap"></i>
+                        <span>Historial</span></a>
+                </li>
+
+                <!-- Nav Item - Charts -->
+                <li class="nav-item">
+                    <a class="nav-link" href="usuarios.php">
+                        <i class="fas fa-fw fa-users"></i>
+                        <span>Usuarios</span></a>
+                </li>
+
+
+            <?php } ?>
+
 
 
             <!-- Divider -->

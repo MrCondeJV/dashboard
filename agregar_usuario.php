@@ -1,23 +1,41 @@
 <?php
 
 if (!empty($_POST["btnAgregarUsuario"])) {
-    if (!empty($_POST["nombre"]) and !empty($_POST["apellido"])and !empty($_POST["dni"])and !empty($_POST["fecha"])and !empty($_POST["email"])) {
+    echo "<script>
+    alert('todo ok!!');
+   
+    </script>";
+    if (!empty($_POST["nombre"]) and !empty($_POST["usuario"])and !empty($_POST["contrasena"])and !empty($_POST["rol"])) {
 
         $nombre =$_POST["nombre"];
-        $apellido =$_POST["apellido"];
-        $dni =$_POST["dni"];
-        $fecha =$_POST["fecha"];
-        $email =$_POST["email"];
+        $usuario =$_POST["usuario"];
+        $contrasena =$_POST["contrasena"];
+        $rol =intval($_POST["rol"]);
+       
 
-        $sql=$conexion -> query("INSERT INTO persona(nombre,apellido,dni,fecha_nac,correo) values ('$nombre','$apellido','$dni','$fecha','$email')");
+        $sql=$conexion -> query("INSERT INTO usuarios(Nombre,Usuario,contrasena,ID_Rol) values ('$nombre','$usuario','$contrasena','$rol')");
         if($sql==1){
-            echo '<div class="alert alert-success"> Persona Registrada Correctamente</div>';
+            echo "<script>
+            alert('Usuario Registrado Correctamente!!');
+           
+            </script>";
+      
+
         }else{
-            echo '<div class="alert alert-danger"> Error al Registrar a la persona</div>';
+            echo "<script>
+            alert('Error al registrar!!');
+            document.location='usuarios.php';
+            </script>";
+
+            
         }
 
     }else{
-        echo '<div class="alert alert-warning"> Alguno de los campos faltan por llenar</div>';
+      
+        echo "<script>
+        alert('Faltan Campos!!');
+        document.location='usuarios.php';
+        </script>";
     }
 }
 

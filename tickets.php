@@ -2,14 +2,14 @@
 session_start();
 
 if (!isset($_SESSION['id'])) {
-    header("Location: index.php");
+    header("Location: login.php");
     exit();
 }
 
 
 $nombre = $_SESSION['nombre'];
+$rol = $_SESSION['ID_Rol']
 ?>
-
 
 <!DOCTYPE html>
 <html lang="es">
@@ -68,34 +68,38 @@ $nombre = $_SESSION['nombre'];
                 Menú
             </div>
 
-
-            <!-- Nav Item - Charts -->
-            <li class="nav-item">
-                <a class="nav-link" href="usuarios.php">
-                    <i class="fas fa-fw fa-users"></i>
-                    <span>Usuarios</span></a>
-            </li>
-
-            <!-- Nav Item - Tables -->
-            <li class="nav-item">
-                <a class="nav-link" href="historial.php">
-                    <i class="fas fa-fw fa-sitemap"></i>
-                    <span>Historial</span></a>
-            </li>
-
-            <!-- Nav Item - Tables -->
-            <li class="nav-item">
-                <a class="nav-link" href="tickets.php">
-                    <i class="fas fa-fw fa-tags"></i>
-                    <span>Tickets</span></a>
-            </li>
-
             <!-- Nav Item - Tables -->
             <li class="nav-item">
                 <a class="nav-link" href="calendario.php">
                     <i class="fas fa-fw fa-calendar-day"></i>
                     <span>Calendario</span></a>
             </li>
+
+            <?php if ($rol == 1) { ?>
+
+                <!-- Nav Item - Tables -->
+                <li class="nav-item">
+                    <a class="nav-link" href="tickets.php">
+                        <i class="fas fa-fw fa-tags"></i>
+                        <span>Tickets</span></a>
+                </li>
+
+                <!-- Nav Item - Tables -->
+                <li class="nav-item">
+                    <a class="nav-link" href="historial.php">
+                        <i class="fas fa-fw fa-sitemap"></i>
+                        <span>Historial</span></a>
+                </li>
+
+                <!-- Nav Item - Charts -->
+                <li class="nav-item">
+                    <a class="nav-link" href="usuarios.php">
+                        <i class="fas fa-fw fa-users"></i>
+                        <span>Usuarios</span></a>
+                </li>
+
+
+            <?php } ?>
 
 
             <!-- Divider -->
@@ -343,47 +347,46 @@ $nombre = $_SESSION['nombre'];
 
                         </div>
                         <div class="card-body ">
+                            <div class="table-responsive">
 
-
-
-                            <table class="table table-bordered table-striped table-hover">
-                                <thead>
-                                    <tr>
-                                        <th>ID</th>
-                                        <th>Codigo Ticket</th>
-                                        <th>Nombre TIcket</th>
-                                        <th>Fecha Prestamo</th>
-                                        <th>Solicitante</th>
-                                        <th>Aula Solicitada</th>
-                                        <th>Acciones</th> <!-- Cambiado de "" a "Acciones" -->
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    <?php
-                                    include "./conexion.php";
-                                    $sql = $mysqli->query("SELECT * FROM usuarios");
-                                    while ($datos = $sql->fetch_object()) { ?>
-
+                                <table class="table table-bordered table-striped table-hover">
+                                    <thead>
                                         <tr>
-                                            <td></td>
-                                            <td></td>
-                                            <td></td>
-                                            <td></td>
-                                            <td></td>
-                                            <td></td>
-                                            <td>
-                                                <a href="#" class="btn btn-success ">Aprovar</a>
-                                                <a href="#" class="btn btn-danger ">Rechazar</a>
-                                            </td>
-
+                                            <th>ID</th>
+                                            <th>Codigo Ticket</th>
+                                            <th>Nombre TIcket</th>
+                                            <th>Fecha Prestamo</th>
+                                            <th>Solicitante</th>
+                                            <th>Aula Solicitada</th>
+                                            <th>Acciones</th> <!-- Cambiado de "" a "Acciones" -->
                                         </tr>
+                                    </thead>
+                                    <tbody>
+                                        <?php
+                                        include "./conexion.php";
+                                        $sql = $mysqli->query("SELECT * FROM usuarios");
+                                        while ($datos = $sql->fetch_object()) { ?>
 
-                                    <?php }
-                                    ?>
+                                            <tr>
+                                                <td></td>
+                                                <td></td>
+                                                <td></td>
+                                                <td></td>
+                                                <td></td>
+                                                <td></td>
+                                                <td>
+                                                    <a href="#" class="btn btn-success ">Aprovar</a>
+                                                    <a href="#" class="btn btn-danger ">Rechazar</a>
+                                                </td>
 
-                                </tbody>
-                            </table>
+                                            </tr>
 
+                                        <?php }
+                                        ?>
+
+                                    </tbody>
+                                </table>
+                            </div>
 
 
                             <!-- Dialogo de Confirmacion para agregarUsuario -->
@@ -428,63 +431,64 @@ $nombre = $_SESSION['nombre'];
                             </div>
                         </div>
                     </div>
-
-                    <!-- Footer -->
-                    <footer class="sticky-footer bg-white">
-                        <div class="container my-auto">
-                            <div class="copyright text-center my-auto">
-                                <span>Copyright &copy; División de Tecnologías de la Información y de las Comunicaciones ESFIM </span>
-                            </div>
-                        </div>
-                    </footer>
-                    <!-- End of Footer -->
-
                 </div>
-                <!-- End of Content Wrapper -->
-
             </div>
-            <!-- End of Page Wrapper -->
-
-            <!-- Scroll to Top Button-->
-            <a class="scroll-to-top rounded" href="#page-top">
-                <i class="fas fa-angle-up"></i>
-            </a>
-
-            <!-- Logout Modal-->
-            <div class="modal fade" id="logoutModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-                <div class="modal-dialog" role="document">
-                    <div class="modal-content">
-                        <div class="modal-header">
-                            <h5 class="modal-title" id="exampleModalLabel">Desea Cerrar Sesión?</h5>
-                            <button class="close" type="button" data-dismiss="modal" aria-label="Close">
-                                <span aria-hidden="true">×</span>
-                            </button>
-                        </div>
-                        <div class="modal-body">Seleccione "Cerrar sesión" a continuación si está listo para finalizar su sesión actual.</div>
-                        <div class="modal-footer">
-                            <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancelar</button>
-                            <a class="btn btn-primary" href="./cerrar_sesion.php">Cerrar Sesión</a>
-                        </div>
+            <!-- Footer -->
+            <footer class="sticky-footer bg-white">
+                <div class="container my-auto">
+                    <div class="copyright text-center my-auto">
+                        <span>Copyright &copy; División de Tecnologías de la Información y de las Comunicaciones ESFIM </span>
                     </div>
                 </div>
+            </footer>
+            <!-- End of Footer -->
+
+        </div>
+        <!-- End of Content Wrapper -->
+
+    </div>
+    <!-- End of Page Wrapper -->
+
+    <!-- Scroll to Top Button-->
+    <a class="scroll-to-top rounded" href="#page-top">
+        <i class="fas fa-angle-up"></i>
+    </a>
+
+    <!-- Logout Modal-->
+    <div class="modal fade" id="logoutModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">Desea Cerrar Sesión?</h5>
+                    <button class="close" type="button" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">×</span>
+                    </button>
+                </div>
+                <div class="modal-body">Seleccione "Cerrar sesión" a continuación si está listo para finalizar su sesión actual.</div>
+                <div class="modal-footer">
+                    <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancelar</button>
+                    <a class="btn btn-primary" href="./cerrar_sesion.php">Cerrar Sesión</a>
+                </div>
             </div>
+        </div>
+    </div>
 
-            <!-- Bootstrap core JavaScript-->
-            <script src="vendor/jquery/jquery.min.js"></script>
-            <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+    <!-- Bootstrap core JavaScript-->
+    <script src="vendor/jquery/jquery.min.js"></script>
+    <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
 
-            <!-- Core plugin JavaScript-->
-            <script src="vendor/jquery-easing/jquery.easing.min.js"></script>
+    <!-- Core plugin JavaScript-->
+    <script src="vendor/jquery-easing/jquery.easing.min.js"></script>
 
-            <!-- Custom scripts for all pages-->
-            <script src="js/sb-admin-2.min.js"></script>
+    <!-- Custom scripts for all pages-->
+    <script src="js/sb-admin-2.min.js"></script>
 
-            <!-- Page level plugins -->
-            <script src="vendor/chart.js/Chart.min.js"></script>
+    <!-- Page level plugins -->
+    <script src="vendor/chart.js/Chart.min.js"></script>
 
-            <!-- Page level custom scripts -->
-            <script src="js/demo/chart-area-demo.js"></script>
-            <script src="js/demo/chart-pie-demo.js"></script>
+    <!-- Page level custom scripts -->
+    <script src="js/demo/chart-area-demo.js"></script>
+    <script src="js/demo/chart-pie-demo.js"></script>
 
 </body>
 
