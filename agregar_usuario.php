@@ -1,44 +1,30 @@
 <?php
+if (!empty($_POST["btnregistrar"])) {
+    if (!empty($_POST["nombre"]) && !empty($_POST["usuario"]) && !empty($_POST["contrasena"])) {
+        include "./conexion.php"; // Asegúrate de incluir la conexión aquí para usar $mysqli
 
-if (!empty($_POST["btnAgregarUsuario"])) {
-    echo "<script>
-    alert('todo ok!!');
-   
-    </script>";
-    if (!empty($_POST["nombre"]) and !empty($_POST["usuario"])and !empty($_POST["contrasena"])and !empty($_POST["rol"])) {
+        $nombre = $mysqli->real_escape_string($_POST["nombre"]);
+        $usuario = $mysqli->real_escape_string($_POST["usuario"]);
+        $contrasena = hash('sha1',$mysqli->real_escape_string($_POST["contrasena"]));
+        $rol = $mysqli->real_escape_string($_POST["rol"]);
 
-        $nombre =$_POST["nombre"];
-        $usuario =$_POST["usuario"];
-        $contrasena =$_POST["contrasena"];
-        $rol =intval($_POST["rol"]);
-       
+        $sql = $mysqli->query("INSERT INTO usuarios (Nombre, Usuario, contrasena, ID_Rol) VALUES ('$nombre', '$usuario', '$contrasena', '$rol')");
 
-        $sql=$conexion -> query("INSERT INTO usuarios(Nombre,Usuario,contrasena,ID_Rol) values ('$nombre','$usuario','$contrasena','$rol')");
-        if($sql==1){
+        if ($sql) {
             echo "<script>
             alert('Usuario Registrado Correctamente!!');
-           
-            </script>";
-      
-
-        }else{
-            echo "<script>
-            alert('Error al registrar!!');
             document.location='usuarios.php';
             </script>";
-
-            
+        } else {
+            echo "<script>
+            alert('Error al registrar: " . $mysqli->error . "');
+            document.location='usuarios.php';
+            </script>";
         }
-
-    }else{
-      
+    } else {
         echo "<script>
         alert('Faltan Campos!!');
-        document.location='usuarios.php';
         </script>";
     }
 }
-
-
-
 ?>

@@ -337,7 +337,7 @@ $rol = $_SESSION['ID_Rol']
                             Tabla de Usuarios
 
                         </div>
-                        <div class="card-body ">
+                        <div class="card-body">
 
                             <!-- Button trigger modal -->
                             <button type="button" class="btn btn-success mb-3" data-bs-toggle="modal" data-bs-target="#staticBackdrop">
@@ -345,44 +345,78 @@ $rol = $_SESSION['ID_Rol']
                             </button>
 
                             <div class="table-responsive">
-                            <table class="table  table-bordered table-striped table-hover">
-                                <thead>
-                                    <tr>
-                                        <th>ID</th>
-                                        <th>Nombre</th>
-                                        <th>Usuario</th>
-                                        <th>Contraseña</th>
-                                        <th>Rol</th>
-                                        <th>Acciones</th> <!-- Cambiado de "" a "Acciones" -->
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    <?php
-                                    include "./conexion.php";
-                                    $sql = $mysqli->query("SELECT * FROM usuarios");
-                                    while ($datos = $sql->fetch_object()) { ?>
-
+                                <table class="table table-bordered table-striped table-hover">
+                                    <thead>
                                         <tr>
-                                            <td><?php echo $datos->ID ?></td>
-                                            <td><?php echo $datos->Nombre ?></td>
-                                            <td><?php echo $datos->Usuario ?></td>
-                                            <td><?php echo $datos->contrasena ?></td>
-                                            <td><?php echo $datos->ID_Rol ?></td>
-                                            <td>
-                                                <!-- Anclas movidos dentro de la celda de "Acciones" -->
-                                                <a href="#" class="btn btn-warning " data-bs-toggle="modal" data-bs-target="#staticBackdropMod">Editar</a>
-                                                <a href="#" class="btn btn-danger ">Eliminar</a>
-                                            </td>
+                                            <th>ID</th>
+                                            <th>Nombre</th>
+                                            <th>Usuario</th>
+                                            <th>Contraseña</th>
+                                            <th>Rol</th>
+                                            <th>Acciones</th>
                                         </tr>
+                                    </thead>
+                                    <tbody>
+                                        <?php
+                                        include "./conexion.php";
+                                        $sql = $mysqli->query("SELECT * FROM usuarios");
+                                        while ($datos = $sql->fetch_object()) { ?>
 
-                                    <?php }
-                                    ?>
+                                            <tr>
+                                                <td><?php echo $datos->ID ?></td>
+                                                <td><?php echo $datos->Nombre ?></td>
+                                                <td><?php echo $datos->Usuario ?></td>
+                                                <td><?php echo $datos->contrasena ?></td>
+                                                <td><?php echo $datos->ID_Rol ?></td>
+                                                <td>
+                                                    <a href="#" class="btn btn-warning" data-bs-toggle="modal" data-bs-target="#staticBackdropMod<?php echo $datos->ID; ?>">Editar</a>
+                                                    <a href="#" class="btn btn-danger" onclick="confirmarEliminacion(<?php echo $datos->ID; ?>)">Eliminar</a>
+                                                </td>
+                                            </tr>
 
-                                </tbody>
-                            </table>
+                                            <!-- Dialogo de Confirmacion para Modificar Usuario -->
+                                            <div class="modal fade" id="staticBackdropMod<?php echo $datos->ID; ?>" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropModLabel<?php echo $datos->ID; ?>" aria-hidden="true">
+                                                <div class="modal-dialog">
+                                                    <div class="modal-content">
+                                                        <div class="modal-header">
+                                                            <h1 class="modal-title fs-5" id="staticBackdropModLabel<?php echo $datos->ID; ?>">Modificar Usuario</h1>
+                                                        </div>
+                                                        <form method="POST" action="./modificar_usuario.php?id=<?php echo $datos->ID; ?>">
+                                                            <div class="modal-body">
+                                                                <div class="mb-3">
+                                                                    <label class="form-label">Nombre Completo</label>
+                                                                    <input type="text" class="form-control" name="nombremod" placeholder="Nombre" value="<?php echo $datos->Nombre; ?>">
+                                                                </div>
+                                                                <div class="mb-3">
+                                                                    <label class="form-label">Usuario</label>
+                                                                    <input type="text" class="form-control" name="usuariomod" placeholder="Usuario" value="<?php echo $datos->Usuario; ?>">
+                                                                </div>
+                                                                <div class="mb-3">
+                                                                    <label class="form-label">Password</label>
+                                                                    <input type="text" class="form-control" name="contraseñamod" placeholder="Password" value="<?php echo $datos->contrasena; ?>">
+                                                                </div>
+                                                                <div class="mb-3">
+                                                                    <label class="form-label">Rol</label>
+                                                                    <select class="form-select" name="rolmod">
+                                                                        <option value="<?php echo $datos->ID_Rol; ?>"><?php echo $datos->ID_Rol; ?></option>
+                                                                        <option value="1">1- Administrador</option>
+                                                                        <option value="2">2- Observador</option>
+                                                                    </select>
+                                                                </div>
+                                                            </div>
+                                                            <div class="modal-footer">
+                                                                <button type="submit" class="btn btn-warning" name="btnmodificar" value="ok">Modificar</button>
+                                                                <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Cerrar</button>
+                                                            </div>
+                                                        </form>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        <?php }
+                                        ?>
+                                    </tbody>
+                                </table>
                             </div>
-
-
 
                             <!-- Dialogo de Confirmacion para agregarUsuario -->
                             <div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
@@ -390,61 +424,8 @@ $rol = $_SESSION['ID_Rol']
                                     <div class="modal-content">
                                         <div class="modal-header">
                                             <h1 class="modal-title fs-5" id="staticBackdropLabel">Agregar Usuario</h1>
-
                                         </div>
-                                        <form method="POST">
-                                            
-                                            <div class="modal-body">
-                                            <?php
-                                            include "./conexion.php";
-                                            include "./agregar_usuario.php";
-                                            
-                                            ?>
-                                                <div class="mb-3">
-                                                    <label class="form-label">Nombre Completo</label>
-                                                    <input type="text" class="form-control" name="nombre" placeholder="Nombre">
-                                                </div>
-                                                <div class="mb-3">
-                                                    <label class="form-label">Usuario</label>
-                                                    <input type="text" class="form-control" name="usuario" placeholder="Usuario">
-                                                </div>
-                                                <div class="mb-3">
-                                                    <label class="form-label">Password</label>
-                                                    <input type="text" class="form-control" name="contrasena" placeholder="Password">
-                                                </div>
-
-                                                <div class="mb-3">
-                                                    <label class="form-label">Rol</label>
-                                                    <select class="form-select" name="rol" id="">
-                                                        <option value="1" >1- Administrador</option>
-                                                        <option value="2" >2- Observador</option>
-                                                    </select>
-                                                </div>
-                                            </div>
-                                            <div class="modal-footer">
-                                                <button type="submit" class="btn btn-success" name="btnAgregarUsuario" value="ok">Agregar</button>
-                                                <button type="button" class="btn btn-danger" data-bs-dismiss="modal" name="btnEliminarUsuario">Close</button>
-
-                                            </div>
-                                        </form>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <!-- FIN Dialogo de Confirmacion para agregarUsuario -->
-
-
-
-                    <!-- Dialogo de Confirmacion para Modificar Usuario -->
-                    <div class="modal fade" id="staticBackdropMod" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
-                                <div class="modal-dialog">
-                                    <div class="modal-content">
-                                        <div class="modal-header">
-                                            <h1 class="modal-title fs-5" id="staticBackdropLabel">Modificar Usuario</h1>
-
-                                        </div>
-                                        <form method="POST" action="./modificiar_usuario.php">
+                                        <form method="POST" action="agregar_usuario.php">
                                             <div class="modal-body">
                                                 <div class="mb-3">
                                                     <label class="form-label">Nombre Completo</label>
@@ -456,86 +437,95 @@ $rol = $_SESSION['ID_Rol']
                                                 </div>
                                                 <div class="mb-3">
                                                     <label class="form-label">Password</label>
-                                                    <input type="text" class="form-control" name="contraseña" placeholder="Password">
+                                                    <input type="password" class="form-control" name="contrasena" placeholder="Password">
                                                 </div>
-
                                                 <div class="mb-3">
                                                     <label class="form-label">Rol</label>
-                                                    <select class="form-select" name="rol" id="">
+                                                    <select class="form-select" name="rol">
                                                         <option value="1">1- Administrador</option>
                                                         <option value="2">2- Observador</option>
                                                     </select>
                                                 </div>
                                             </div>
                                             <div class="modal-footer">
-                                                <button type="submit" class="btn btn-warning" name="btnModificarUsuario">Modificar</button>
-                                                <button type="button" class="btn btn-danger" data-bs-dismiss="modal" name="btnCerrar">Close</button>
-
+                                                <button type="submit" class="btn btn-success" name="btnregistrar" value="ok">Agregar</button>
+                                                <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Cerrar</button>
                                             </div>
                                         </form>
                                     </div>
                                 </div>
                             </div>
                         </div>
-                   
-                    <!-- FIN Dialogo de Confirmacion para Modificar Usuario -->
 
+                        <script>
+                            function confirmarEliminacion(id) {
+                                if (confirm("¿Estás seguro de que deseas eliminar este usuario?")) {
+                                    window.location.href = "eliminar_usuario.php?id=" + id;
+                                }
+                            }
+                        </script>
+
+
+
+                        <!-- FIN Dialogo de Confirmacion para Modificar Usuario -->
+
+
+                    </div>
+                    <!-- End of Main Content -->
+
+                    <!-- Footer -->
+                    <footer class="sticky-footer bg-white">
+                        <div class="container my-auto">
+                            <div class="copyright text-center my-auto">
+                                <span>Copyright &copy; División de Tecnologías de la Información y de las Comunicaciones ESFIM </span>
+                            </div>
+                        </div>
+                    </footer>
+                    <!-- End of Footer -->
 
                 </div>
-                <!-- End of Main Content -->
+                <!-- End of Content Wrapper -->
 
-                <!-- Footer -->
-                <footer class="sticky-footer bg-white">
-                    <div class="container my-auto">
-                        <div class="copyright text-center my-auto">
-                            <span>Copyright &copy; División de Tecnologías de la Información y de las Comunicaciones ESFIM </span>
+            </div>
+            <!-- End of Page Wrapper -->
+
+            <!-- Scroll to Top Button-->
+            <a class="scroll-to-top rounded" href="#page-top">
+                <i class="fas fa-angle-up"></i>
+            </a>
+
+            <!-- Logout Modal-->
+            <div class="modal fade" id="logoutModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                <div class="modal-dialog" role="document">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title" id="exampleModalLabel">Desea Cerrar Sesión?</h5>
+                            <button class="close" type="button" data-dismiss="modal" aria-label="Close">
+                                <span aria-hidden="true">×</span>
+                            </button>
+                        </div>
+                        <div class="modal-body">Seleccione "Cerrar sesión" a continuación si está listo para finalizar su sesión actual.</div>
+                        <div class="modal-footer">
+                            <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancelar</button>
+                            <a class="btn btn-primary" href="./cerrar_sesion.php">Cerrar Sesión</a>
                         </div>
                     </div>
-                </footer>
-                <!-- End of Footer -->
-
-            </div>
-            <!-- End of Content Wrapper -->
-
-        </div>
-        <!-- End of Page Wrapper -->
-
-        <!-- Scroll to Top Button-->
-        <a class="scroll-to-top rounded" href="#page-top">
-            <i class="fas fa-angle-up"></i>
-        </a>
-
-        <!-- Logout Modal-->
-        <div class="modal fade" id="logoutModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-            <div class="modal-dialog" role="document">
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <h5 class="modal-title" id="exampleModalLabel">Desea Cerrar Sesión?</h5>
-                        <button class="close" type="button" data-dismiss="modal" aria-label="Close">
-                            <span aria-hidden="true">×</span>
-                        </button>
-                    </div>
-                    <div class="modal-body">Seleccione "Cerrar sesión" a continuación si está listo para finalizar su sesión actual.</div>
-                    <div class="modal-footer">
-                        <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancelar</button>
-                        <a class="btn btn-primary" href="./cerrar_sesion.php">Cerrar Sesión</a>
-                    </div>
                 </div>
             </div>
-        </div>
 
-         <!-- Bootstrap core JavaScript-->
-         <script src="vendor/jquery/jquery.min.js"></script>
-        <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+            <!-- Bootstrap core JavaScript-->
+            <script src="vendor/jquery/jquery.min.js"></script>
+            <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+
+            <script src="js/sb-admin-2.min.js"></script>
 
 
+            <!-- Core plugin JavaScript-->
+            <script src="vendor/jquery-easing/jquery.easing.min.js"></script>
 
-        <!-- Core plugin JavaScript-->
-        <script src="vendor/jquery-easing/jquery.easing.min.js"></script>
+            <!-- Custom scripts for all pages-->
 
-        <!-- Custom scripts for all pages-->
-
-        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
+            <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
 </body>
 
 </html>
