@@ -6,11 +6,32 @@ if (!isset($_SESSION['id'])) {
     exit();
 }
 
-
 $nombre = $_SESSION['nombre'];
-$rol = $_SESSION['ID_Rol']
-?>
+$rol = $_SESSION['ID_Rol'];
 
+// Incluir archivo de conexión a la base de datos
+include "./conexion.php";
+
+// Consulta para obtener todas las solicitudes aprobadas
+$query = "SELECT * FROM historial WHERE estado = 'aprobada'";
+$result = $mysqli->query($query);
+
+// Array para almacenar los eventos del calendario
+$eventos = array();
+
+// Recorrer los resultados y agregarlos al array de eventos
+while ($row = $result->fetch_assoc()) {
+    // Formatear el evento para que sea compatible con el calendario
+    $evento = array(
+        'title' => 'Solicitud de ' . $row['solicitante'] . ' - Aula ' . $row['aula_solicitada'],
+        'start' => $row['fecha_prestamo'], // Solo necesitamos la fecha de inicio
+        'color' => '#28a745' // Color verde para las solicitudes aprobadas
+    );
+
+    // Agregar el evento al array de eventos
+    array_push($eventos, $evento);
+}
+?>
 
 <!DOCTYPE html>
 <html lang="es">
@@ -80,8 +101,8 @@ $rol = $_SESSION['ID_Rol']
             </div>
 
 
-              <!-- Nav Item - Tables -->
-              <li class="nav-item">
+            <!-- Nav Item - Tables -->
+            <li class="nav-item">
                 <a class="nav-link" href="calendario.php">
                     <i class="fas fa-fw fa-calendar-day"></i>
                     <span>Calendario</span></a>
@@ -342,9 +363,46 @@ $rol = $_SESSION['ID_Rol']
 
                     <div class="card mt-3 shadow p-3 mb-5 bg-body-tertiary rounded border-left-info">
                         <div id='calendar'></div>
-
-
                     </div>
+
+                    <!-- Modal para mostrar detalles de la solicitud -->
+                    <div class="modal fade" id="solicitudModal" tabindex="-1" aria-labelledby="solicitudModalLabel" aria-hidden="true">
+                        <div class="modal-dialog">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <h5 class="modal-title" id="solicitudModalLabel">Detalles de la Solicitud</h5>
+                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                        <span aria-hidden="true">&times;</span>
+                                    </button>
+                                </div>
+                                <div class="modal-body">
+                                    <!-- Aquí se mostrarán los detalles de la solicitud -->
+                                </div>
+                                <div class="modal-footer">
+                                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Tu código existente para el pie de página y los scripts -->
+
+                    <!-- Script adicional para inicializar el calendario con los eventos y manejar clics en los eventos -->
+                    <script>
+                        document.addEventListener('DOMContentLoaded', function() {
+                            const calendarEl = document.getElementById('calendar');
+                            const calendar = new FullCalendar.Calendar(calendarEl, {
+                                initialView: 'dayGridMonth',
+                                events: <?php echo json_encode($eventos); ?>, // Agregar los eventos al calendario
+                                eventClick: function(info) {
+                                    // Mostrar detalles de la solicitud en el modal
+                                    $('#solicitudModal .modal-body').html(info.event.title);
+                                    $('#solicitudModal').modal('show');
+                                }
+                            });
+                            calendar.render();
+                        });
+                    </script>
                 </div>
 
                 <!-- /.container-fluid -->

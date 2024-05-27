@@ -334,104 +334,77 @@ $rol = $_SESSION['ID_Rol']
                     <!-- Page Heading -->
                     <div class="d-sm-flex align-items-center justify-content-between mb-4">
                         <h1 class="h3 mb-0 text-gray-800">Tickets</h1>
-                        <a href="#" class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm"><i class="fas fa-download fa-sm text-white-50"></i> Generar Reporte</a>
+                        <a href="#" class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm">
+                            <i class="fas fa-download fa-sm text-white-50"></i> Generar Reporte
+                        </a>
                     </div>
-
 
                     <!-- Begin Page Content -->
 
                     <div class="card mt-3 shadow p-3 mb-5 bg-body-tertiary rounded border-left-warning">
-
-                        <div class="card-header bg-primary text-white  ">
+                        <div class="card-header bg-primary text-white">
                             Tickets Pendientes
-
                         </div>
-                        <div class="card-body ">
+                        <div class="card-body">
                             <div class="table-responsive">
-
                                 <table class="table table-bordered table-striped table-hover">
                                     <thead>
                                         <tr>
                                             <th>ID</th>
-                                            <th>Codigo Ticket</th>
-                                            <th>Nombre TIcket</th>
-                                            <th>Fecha Prestamo</th>
+                                            <th>Documento</th>
                                             <th>Solicitante</th>
-                                            <th>Aula Solicitada</th>
-                                            <th>Acciones</th> <!-- Cambiado de "" a "Acciones" -->
+                                            <th>Unidad</th>
+                                            <th>Correo</th>
+                                            <th>Telefono</th>
+                                            <th>Aula</th>
+                                            <th>Descripcion</th>
+                                            <th>Nro. Personas</th>
+                                            <th>Fecha</th>
+                                            <th>Hora Inicial</th>
+                                            <th>Hora Final</th>
+                                            <th>Acciones</th>
                                         </tr>
                                     </thead>
                                     <tbody>
                                         <?php
                                         include "./conexion.php";
-                                        $sql = $mysqli->query("SELECT * FROM usuarios");
+                                        $sql = $mysqli->query("SELECT * FROM solicitudes");
                                         while ($datos = $sql->fetch_object()) { ?>
-
                                             <tr>
-                                                <td></td>
-                                                <td></td>
-                                                <td></td>
-                                                <td></td>
-                                                <td></td>
-                                                <td></td>
+                                                <td><?php echo $datos->id ?></td>
+                                                <td><?php echo $datos->nro_documento ?></td>
+                                                <td><?php echo $datos->nombre_solicitante ?></td>
+                                                <td><?php echo $datos->unidad_trabajo ?></td>
+                                                <td><?php echo $datos->correo ?></td>
+                                                <td><?php echo $datos->telefono ?></td>
+                                                <td><?php echo $datos->aula ?></td>
+                                                <td><?php echo $datos->descripcion_evento ?></td>
+                                                <td><?php echo $datos->cantidad_personas ?></td>
+                                                <td><?php echo $datos->fecha ?></td>
+                                                <td><?php echo $datos->hora_inicial ?></td>
+                                                <td><?php echo $datos->hora_final ?></td>
                                                 <td>
-                                                    <a href="#" class="btn btn-success ">Aprovar</a>
-                                                    <a href="#" class="btn btn-danger ">Rechazar</a>
+                                                    <!-- Form for approving the ticket -->
+                                                    <form method="POST" action="aprobar_solicitud.php" style="display:inline;">
+                                                        <input type="hidden" name="solicitud_id" value="<?php echo $datos->id ?>">
+                                                        <button type="submit" name="btnAprobarTicket" class="btn btn-success">Aprobar</button>
+                                                    </form>
+                                                    <!-- Form for rejecting the ticket -->
+                                                    <form method="POST" action="rechazar_solicitud.php" style="display:inline;">
+                                                        <input type="hidden" name="solicitud_id" value="<?php echo $datos->id ?>">
+                                                        <button type="submit" name="btnReprobarTicket" class="btn btn-danger">Rechazar</button>
+                                                    </form>
                                                 </td>
-
                                             </tr>
-
                                         <?php }
                                         ?>
-
                                     </tbody>
                                 </table>
-                            </div>
-
-
-                            <!-- Dialogo de Confirmacion para agregarUsuario -->
-                            <div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
-                                <div class="modal-dialog">
-                                    <div class="modal-content">
-                                        <div class="modal-header">
-                                            <h1 class="modal-title fs-5" id="staticBackdropLabel">Agregar Usuario</h1>
-
-                                        </div>
-                                        <form method="POST" action="./agregar_usuario.php">
-                                            <div class="modal-body">
-                                                <div class="mb-3">
-                                                    <label class="form-label">Nombre Completo</label>
-                                                    <input type="text" class="form-control" name="nombre" placeholder="Nombre">
-                                                </div>
-                                                <div class="mb-3">
-                                                    <label class="form-label">Usuario</label>
-                                                    <input type="text" class="form-control" name="usuario" placeholder="Usuario">
-                                                </div>
-                                                <div class="mb-3">
-                                                    <label class="form-label">Password</label>
-                                                    <input type="text" class="form-control" name="contraseña" placeholder="Password">
-                                                </div>
-
-                                                <div class="mb-3">
-                                                    <label class="form-label">Rol</label>
-                                                    <select class="form-select" name="rol" id="">
-                                                        <option value="1">1- Administrador</option>
-                                                        <option value="2">2- Observador</option>
-                                                    </select>
-                                                </div>
-                                            </div>
-                                            <div class="modal-footer">
-                                                <button type="submit" class="btn btn-success" name="btnAgregarUsuario">Agregar</button>
-                                                <button type="button" class="btn btn-danger" data-bs-dismiss="modal" name="btnEliminarUsuario">Close</button>
-
-                                            </div>
-                                        </form>
-                                    </div>
-                                </div>
                             </div>
                         </div>
                     </div>
                 </div>
+
             </div>
             <!-- Footer -->
             <footer class="sticky-footer bg-white">

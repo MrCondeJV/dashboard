@@ -364,16 +364,16 @@ $rol = $_SESSION['ID_Rol']
                                     <tbody>
                                         <?php
                                         include "./conexion.php";
-                                        $sql = $mysqli->query("SELECT * FROM usuarios");
+                                        $sql = $mysqli->query("SELECT * FROM historial");
                                         while ($datos = $sql->fetch_object()) { ?>
 
                                             <tr>
-                                                <td></td>
-                                                <td></td>
-                                                <td></td>
-                                                <td></td>
-                                                <td></td>
-                                                <td></td>
+                                                <td><?php echo $datos->ID?></td>
+                                                <td><?php echo $datos->cod_ticket?></td>
+                                                <td><?php echo $datos->fecha_prestamo?></td>
+                                                <td><?php echo $datos->solicitante?></td>
+                                                <td><?php echo $datos->aula_solicitada?></td>
+                                                <td><?php echo $datos->estado?></td>
                                                 <td>
                                                     <a href="#" class="btn btn-info" data-bs-toggle="modal" data-bs-target="#staticBackdrop">Ver detalle</a>
 
