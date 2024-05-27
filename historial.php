@@ -32,6 +32,7 @@ $rol = $_SESSION['ID_Rol']
 
     <!-- Custom styles for this template-->
     <link href="css/sb-admin-2.min.css" rel="stylesheet">
+
 </head>
 
 <body id="page-top">
@@ -54,7 +55,7 @@ $rol = $_SESSION['ID_Rol']
             <hr class="sidebar-divider my-0">
 
             <!-- Nav Item - Dashboard -->
-            <li class="nav-item active">
+            <li class="nav-item ">
                 <a class="nav-link" href="index.php">
                     <i class="fas fa-fw fa-tachometer-alt"></i>
                     <span>Dashboard</span></a>
@@ -70,8 +71,8 @@ $rol = $_SESSION['ID_Rol']
                 Menú
             </div>
 
-           <!-- Nav Item - Tables -->
-           <li class="nav-item">
+            <!-- Nav Item - Tables -->
+            <li class="nav-item">
                 <a class="nav-link" href="calendario.php">
                     <i class="fas fa-fw fa-calendar-day"></i>
                     <span>Calendario</span></a>
@@ -87,7 +88,7 @@ $rol = $_SESSION['ID_Rol']
                 </li>
 
                 <!-- Nav Item - Tables -->
-                <li class="nav-item">
+                <li class="nav-item active">
                     <a class="nav-link" href="historial.php">
                         <i class="fas fa-fw fa-sitemap"></i>
                         <span>Historial</span></a>
@@ -148,148 +149,13 @@ $rol = $_SESSION['ID_Rol']
                     </button>
 
                     <!-- Topbar Search -->
-                    <form class="d-none d-sm-inline-block form-inline mr-auto ml-md-3 my-2 my-md-0 mw-100 navbar-search">
-                        <div class="input-group">
-                            <input type="text" class="form-control bg-light border-0 small" placeholder="Search for..." aria-label="Search" aria-describedby="basic-addon2">
-                            <div class="input-group-append">
-                                <button class="btn btn-primary" type="button">
-                                    <i class="fas fa-search fa-sm"></i>
-                                </button>
-                            </div>
-                        </div>
-                    </form>
+                    
 
                     <!-- Topbar Navbar -->
                     <ul class="navbar-nav ml-auto">
 
                         <!-- Nav Item - Search Dropdown (Visible Only XS) -->
-                        <li class="nav-item dropdown no-arrow d-sm-none">
-                            <a class="nav-link dropdown-toggle" href="#" id="searchDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                <i class="fas fa-search fa-fw"></i>
-                            </a>
-                            <!-- Dropdown - Messages -->
-                            <div class="dropdown-menu dropdown-menu-right p-3 shadow animated--grow-in" aria-labelledby="searchDropdown">
-                                <form class="form-inline mr-auto w-100 navbar-search">
-                                    <div class="input-group">
-                                        <input type="text" class="form-control bg-light border-0 small" placeholder="Search for..." aria-label="Search" aria-describedby="basic-addon2">
-                                        <div class="input-group-append">
-                                            <button class="btn btn-primary" type="button">
-                                                <i class="fas fa-search fa-sm"></i>
-                                            </button>
-                                        </div>
-                                    </div>
-                                </form>
-                            </div>
-                        </li>
-
-                        <!-- Nav Item - Alerts -->
-                        <li class="nav-item dropdown no-arrow mx-1">
-                            <a class="nav-link dropdown-toggle" href="#" id="alertsDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                <i class="fas fa-bell fa-fw"></i>
-                                <!-- Counter - Alerts -->
-                                <span class="badge badge-danger badge-counter">3+</span>
-                            </a>
-                            <!-- Dropdown - Alerts -->
-                            <div class="dropdown-list dropdown-menu dropdown-menu-right shadow animated--grow-in" aria-labelledby="alertsDropdown">
-                                <h6 class="dropdown-header">
-                                    Alerts Center
-                                </h6>
-                                <a class="dropdown-item d-flex align-items-center" href="#">
-                                    <div class="mr-3">
-                                        <div class="icon-circle bg-primary">
-                                            <i class="fas fa-file-alt text-white"></i>
-                                        </div>
-                                    </div>
-                                    <div>
-                                        <div class="small text-gray-500">December 12, 2019</div>
-                                        <span class="font-weight-bold">A new monthly report is ready to download!</span>
-                                    </div>
-                                </a>
-                                <a class="dropdown-item d-flex align-items-center" href="#">
-                                    <div class="mr-3">
-                                        <div class="icon-circle bg-success">
-                                            <i class="fas fa-donate text-white"></i>
-                                        </div>
-                                    </div>
-                                    <div>
-                                        <div class="small text-gray-500">December 7, 2019</div>
-                                        $290.29 has been deposited into your account!
-                                    </div>
-                                </a>
-                                <a class="dropdown-item d-flex align-items-center" href="#">
-                                    <div class="mr-3">
-                                        <div class="icon-circle bg-warning">
-                                            <i class="fas fa-exclamation-triangle text-white"></i>
-                                        </div>
-                                    </div>
-                                    <div>
-                                        <div class="small text-gray-500">December 2, 2019</div>
-                                        Spending Alert: We've noticed unusually high spending for your account.
-                                    </div>
-                                </a>
-                                <a class="dropdown-item text-center small text-gray-500" href="#">Show All Alerts</a>
-                            </div>
-                        </li>
-
-                        <!-- Nav Item - Messages -->
-                        <li class="nav-item dropdown no-arrow mx-1">
-                            <a class="nav-link dropdown-toggle" href="#" id="messagesDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                <i class="fas fa-envelope fa-fw"></i>
-                                <!-- Counter - Messages -->
-                                <span class="badge badge-danger badge-counter">7</span>
-                            </a>
-                            <!-- Dropdown - Messages -->
-                            <div class="dropdown-list dropdown-menu dropdown-menu-right shadow animated--grow-in" aria-labelledby="messagesDropdown">
-                                <h6 class="dropdown-header">
-                                    Message Center
-                                </h6>
-                                <a class="dropdown-item d-flex align-items-center" href="#">
-                                    <div class="dropdown-list-image mr-3">
-                                        <img class="rounded-circle" src="img/undraw_profile_1.svg" alt="...">
-                                        <div class="status-indicator bg-success"></div>
-                                    </div>
-                                    <div class="font-weight-bold">
-                                        <div class="text-truncate">Hi there! I am wondering if you can help me with a
-                                            problem I've been having.</div>
-                                        <div class="small text-gray-500">Emily Fowler · 58m</div>
-                                    </div>
-                                </a>
-                                <a class="dropdown-item d-flex align-items-center" href="#">
-                                    <div class="dropdown-list-image mr-3">
-                                        <img class="rounded-circle" src="img/undraw_profile_2.svg" alt="...">
-                                        <div class="status-indicator"></div>
-                                    </div>
-                                    <div>
-                                        <div class="text-truncate">I have the photos that you ordered last month, how
-                                            would you like them sent to you?</div>
-                                        <div class="small text-gray-500">Jae Chun · 1d</div>
-                                    </div>
-                                </a>
-                                <a class="dropdown-item d-flex align-items-center" href="#">
-                                    <div class="dropdown-list-image mr-3">
-                                        <img class="rounded-circle" src="img/undraw_profile_3.svg" alt="...">
-                                        <div class="status-indicator bg-warning"></div>
-                                    </div>
-                                    <div>
-                                        <div class="text-truncate">Last month's report looks great, I am very happy with
-                                            the progress so far, keep up the good work!</div>
-                                        <div class="small text-gray-500">Morgan Alvarez · 2d</div>
-                                    </div>
-                                </a>
-                                <a class="dropdown-item d-flex align-items-center" href="#">
-                                    <div class="dropdown-list-image mr-3">
-                                        <img class="rounded-circle" src="https://source.unsplash.com/Mv9hjnEUHR4/60x60" alt="...">
-                                        <div class="status-indicator bg-success"></div>
-                                    </div>
-                                    <div>
-                                        <div class="text-truncate">Am I a good boy? The reason I ask is because someone
-                                            told me that people say this to all dogs, even if they aren't good...</div>
-                                        <div class="small text-gray-500">Chicken the Dog · 2w</div>
-                                    </div>
-                                </a>
-                                <a class="dropdown-item text-center small text-gray-500" href="#">Read More Messages</a>
-                            </div>
-                        </li>
+                        
 
                         <div class="topbar-divider d-none d-sm-block"></div>
 
@@ -304,18 +170,7 @@ $rol = $_SESSION['ID_Rol']
                             </a>
                             <!-- Dropdown - User Information -->
                             <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in" aria-labelledby="userDropdown">
-                                <a class="dropdown-item" href="#">
-                                    <i class="fas fa-user fa-sm fa-fw mr-2 text-gray-400"></i>
-                                    Perfil
-                                </a>
-                                <a class="dropdown-item" href="#">
-                                    <i class="fas fa-cogs fa-sm fa-fw mr-2 text-gray-400"></i>
-                                    Configuracion
-                                </a>
-                                <a class="dropdown-item" href="#">
-                                    <i class="fas fa-list fa-sm fa-fw mr-2 text-gray-400"></i>
-                                    Informes
-                                </a>
+                                
                                 <div class="dropdown-divider"></div>
                                 <a class="dropdown-item" href="./cerrar_sesion.php" data-toggle="modal" data-target="#logoutModal">
                                     <i class="fas fa-sign-out-alt fa-sm fa-fw mr-2 text-gray-400"></i>
@@ -357,8 +212,10 @@ $rol = $_SESSION['ID_Rol']
                                             <th>Fecha Prestamo</th>
                                             <th>Solicitante</th>
                                             <th>Aula Solicitada</th>
-                                            <th>Aprueba</th>
-                                            <th>Acciones</th> <!-- Cambiado de "" a "Acciones" -->
+                                            <th>Fecha Inicio</th>
+                                            <th>Fecha Fin</th>
+                                            <th>Estado</th>
+
                                         </tr>
                                     </thead>
                                     <tbody>
@@ -368,16 +225,21 @@ $rol = $_SESSION['ID_Rol']
                                         while ($datos = $sql->fetch_object()) { ?>
 
                                             <tr>
-                                                <td><?php echo $datos->ID?></td>
-                                                <td><?php echo $datos->cod_ticket?></td>
-                                                <td><?php echo $datos->fecha_prestamo?></td>
-                                                <td><?php echo $datos->solicitante?></td>
-                                                <td><?php echo $datos->aula_solicitada?></td>
-                                                <td><?php echo $datos->estado?></td>
+                                                <td><?php echo $datos->ID ?></td>
+                                                <td><?php echo $datos->cod_ticket ?></td>
+                                                <td><?php echo $datos->fecha_prestamo ?></td>
+                                                <td><?php echo $datos->solicitante ?></td>
+                                                <td><?php echo $datos->aula_solicitada ?></td>
+                                                <td><?php echo $datos->fecha_inicial ?></td>
+                                                <td><?php echo $datos->fecha_final ?></td>
                                                 <td>
-                                                    <a href="#" class="btn btn-info" data-bs-toggle="modal" data-bs-target="#staticBackdrop">Ver detalle</a>
-
+                                                    <?php if ($datos->estado == "Aprobada") { ?>
+                                                        <button class="btn btn-success btn-sm"><?php echo $datos->estado ?></button>
+                                                    <?php } else { ?>
+                                                        <button class="btn btn-danger btn-sm"><?php echo $datos->estado ?></button>
+                                                    <?php } ?>
                                                 </td>
+
 
                                             </tr>
 
@@ -390,48 +252,122 @@ $rol = $_SESSION['ID_Rol']
                         </div>
 
 
-                        <!-- Dialogo de Confirmacion para agregarUsuario -->
-                        <div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
-                            <div class="modal-dialog">
-                                <div class="modal-content">
-                                    <div class="modal-header">
-                                        <h1 class="modal-title fs-5" id="staticBackdropLabel">Información del Prestamo</h1>
 
-                                    </div>
-                                    <form method="POST" action="./agregar_usuario.php">
-                                        <div class="modal-body">
-                                            <div class="mb-3">
-                                                <label class="form-label">Nombre Completo</label>
-                                                <input type="text" class="form-control" name="nombre" placeholder="Nombre">
-                                            </div>
-                                            <div class="mb-3">
-                                                <label class="form-label">Usuario</label>
-                                                <input type="text" class="form-control" name="usuario" placeholder="Usuario">
-                                            </div>
-                                            <div class="mb-3">
-                                                <label class="form-label">Password</label>
-                                                <input type="text" class="form-control" name="contraseña" placeholder="Password">
-                                            </div>
+                    </div>
 
-                                            <div class="mb-3">
-                                                <label class="form-label">Rol</label>
-                                                <input type="text" class="form-control" name="rol" placeholder="Rol">
-                                            </div>
-                                        </div>
-                                        <div class="modal-footer">
-
-                                            <button type="button" class="btn btn-danger" data-bs-dismiss="modal" name="btnEliminarUsuario">Close</button>
-
-                                        </div>
-                                    </form>
+                    <!-- Dialogo de Mostrar info detallada -->
+                    <div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+                        <div class="modal-dialog">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <h1 class="modal-title fs-5" id="staticBackdropLabel">Detalle del Préstamo</h1>
+                                </div>
+                                <div class="modal-body">
+                                    <table class="table table-bordered">
+                                        <tbody>
+                                            <tr>
+                                                <th>ID</th>
+                                                <td id="detalle-id"></td>
+                                            </tr>
+                                            <tr>
+                                                <th>Nro. Documento</th>
+                                                <td id="detalle-nro-documento"></td>
+                                            </tr>
+                                            <tr>
+                                                <th>Nombre Solicitante</th>
+                                                <td id="detalle-nombre-solicitante"></td>
+                                            </tr>
+                                            <tr>
+                                                <th>Unidad de Trabajo</th>
+                                                <td id="detalle-unidad-trabajo"></td>
+                                            </tr>
+                                            <tr>
+                                                <th>Correo</th>
+                                                <td id="detalle-correo"></td>
+                                            </tr>
+                                            <tr>
+                                                <th>Teléfono</th>
+                                                <td id="detalle-telefono"></td>
+                                            </tr>
+                                            <tr>
+                                                <th>Aula</th>
+                                                <td id="detalle-aula"></td>
+                                            </tr>
+                                            <tr>
+                                                <th>Descripción del Evento</th>
+                                                <td id="detalle-descripcion-evento"></td>
+                                            </tr>
+                                            <tr>
+                                                <th>Cantidad de Personas</th>
+                                                <td id="detalle-cantidad-personas"></td>
+                                            </tr>
+                                            <tr>
+                                                <th>Fecha</th>
+                                                <td id="detalle-fecha"></td>
+                                            </tr>
+                                            <tr>
+                                                <th>Hora Inicial</th>
+                                                <td id="detalle-hora-inicial"></td>
+                                            </tr>
+                                            <tr>
+                                                <th>Hora Final</th>
+                                                <td id="detalle-hora-final"></td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                                <div class="modal-footer">
+                                    <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Cerrar</button>
                                 </div>
                             </div>
                         </div>
                     </div>
+
+                    <script>
+                        // Función para llenar el modal con datos
+                        function mostrarDetallePrestamo(id) {
+                            $.ajax({
+                                url: 'detalle_prestamo.php',
+                                type: 'GET',
+                                data: {
+                                    id: id
+                                },
+                                success: function(response) {
+                                    const datos = JSON.parse(response);
+                                    if (datos.error) {
+                                        alert(datos.error);
+                                    } else {
+                                        document.getElementById('detalle-id').textContent = datos.id;
+                                        document.getElementById('detalle-nro-documento').textContent = datos.nro_documento;
+                                        document.getElementById('detalle-nombre-solicitante').textContent = datos.nombre_solicitante;
+                                        document.getElementById('detalle-unidad-trabajo').textContent = datos.unidad_trabajo;
+                                        document.getElementById('detalle-correo').textContent = datos.correo;
+                                        document.getElementById('detalle-telefono').textContent = datos.telefono;
+                                        document.getElementById('detalle-aula').textContent = datos.aula;
+                                        document.getElementById('detalle-descripcion-evento').textContent = datos.descripcion_evento;
+                                        document.getElementById('detalle-cantidad-personas').textContent = datos.cantidad_personas;
+                                        document.getElementById('detalle-fecha').textContent = datos.fecha;
+                                        document.getElementById('detalle-hora-inicial').textContent = datos.hora_inicial;
+                                        document.getElementById('detalle-hora-final').textContent = datos.hora_final;
+
+                                        // Mostrar el modal
+                                        var myModal = new bootstrap.Modal(document.getElementById('staticBackdrop'));
+                                        myModal.show();
+                                    }
+                                },
+                                error: function() {
+                                    alert('Error al obtener los datos del préstamo.');
+                                }
+                            });
+                        }
+                    </script>
+
+
                 </div>
 
             </div>
             <!-- End of Main Content -->
+
 
             <!-- Footer -->
             <footer class="sticky-footer bg-white">

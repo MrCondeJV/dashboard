@@ -12,10 +12,12 @@ if (!empty($_POST['solicitud_id'])) {
         $fecha_prestamo = date('Y-m-d H:i:s');
         $solicitante = $solicitud->nombre_solicitante;
         $aula_solicitada = $solicitud->aula;
+        $fecha_inicio = $solicitud ->fecha." ".$solicitud ->hora_inicial;
+        $fecha_fin =   $solicitud ->fecha." ".$solicitud ->hora_final;
         $estado = 'Rechazada'; // Estado de la solicitud rechazada
 
         // Insertar en el historial
-        $sql_historial = $mysqli->query("INSERT INTO historial (cod_ticket, fecha_prestamo, solicitante, aula_solicitada, estado) VALUES ('$cod_ticket', '$fecha_prestamo', '$solicitante', '$aula_solicitada', '$estado')");
+        $sql_historial = $mysqli->query("INSERT INTO historial (cod_ticket, fecha_prestamo, solicitante, aula_solicitada,fecha_inicial, fecha_final, estado) VALUES ('$cod_ticket', '$fecha_prestamo', '$solicitante', '$aula_solicitada','$fecha_inicio','$fecha_fin', '$estado')");
         
         if ($sql_historial) {
             // Eliminar la solicitud de la tabla solicitudes
