@@ -190,7 +190,7 @@ $rol = $_SESSION['ID_Rol']
                     <!-- Page Heading -->
                     <div class="d-sm-flex align-items-center justify-content-between mb-4">
                         <h1 class="h3 mb-0 text-gray-800">Historial</h1>
-                        <a href="#" class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm"><i class="fas fa-download fa-sm text-white-50"></i> Generar Reporte</a>
+                        <a href="generar_pdf.php" class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm"><i class="fas fa-download fa-sm text-white-50"></i> Generar Reporte</a>
                     </div>
 
 
@@ -213,7 +213,8 @@ $rol = $_SESSION['ID_Rol']
                                             <th>Solicitante</th>
                                             <th>Aula Solicitada</th>
                                             <th>Fecha Inicio</th>
-                                            <th>Fecha Fin</th>
+                                            <th>Fecha Termino</th>
+                                            <th>Validador</th>
                                             <th>Estado</th>
 
                                         </tr>
@@ -232,6 +233,7 @@ $rol = $_SESSION['ID_Rol']
                                                 <td><?php echo $datos->aula_solicitada ?></td>
                                                 <td><?php echo $datos->fecha_inicial ?></td>
                                                 <td><?php echo $datos->fecha_final ?></td>
+                                                <td><?php echo $datos->aprueba ?></td>
                                                 <td>
                                                     <?php if ($datos->estado == "Aprobada") { ?>
                                                         <button class="btn btn-success btn-sm"><?php echo $datos->estado ?></button>

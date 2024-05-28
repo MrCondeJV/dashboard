@@ -198,7 +198,7 @@ $rol = $_SESSION['ID_Rol']
                     <!-- Page Heading -->
                     <div class="d-sm-flex align-items-center justify-content-between mb-4">
                         <h2>Administracion de <b>Usuarios</b></h2>
-                        <a href="#" class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm"><i class="fas fa-download fa-sm text-white-50"></i> Generar Reporte</a>
+                        
                     </div>
 
                     <!-- TABLA CRUD DE USUARIOS -->
