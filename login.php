@@ -12,15 +12,15 @@ if ($_POST) {
     $num = $resultado->num_rows;
 
     if ($num > 0) {
-        
+
         $row = $resultado->fetch_assoc();
         $password_bd = $row['contrasena'];
         $pass_c = sha1($password);
-        
+
 
         if ($password_bd == $pass_c) {
 
-            $_SESSION['id']=$row['ID'];
+            $_SESSION['id'] = $row['ID'];
             $_SESSION['nombre'] = $row['Nombre'];
             $_SESSION['ID_Rol'] = $row['ID_Rol'];
             header("Location: index.php");
@@ -63,13 +63,15 @@ if ($_POST) {
                     <div class="card-body p-0">
                         <!-- Fila anidada dentro del cuerpo de la tarjeta -->
                         <div class="row">
-                            <div class="col-lg-6 d-none d-lg-block bg-login-image"></div>
+                            <div class="col-lg-6 d-none d-lg-block bg-login-image">
+                                <img src="./img/esfim_logo.png" alt="ESFIM Logo" class="img-fluid" style="max-width: 80%; height: auto; display: block; margin: 20px auto;">
+                            </div>
                             <div class="col-lg-6">
                                 <div class="p-5">
                                     <div class="text-center">
                                         <h1 class="h4 text-gray-900 mb-4">¡Bienvenido de nuevo!</h1>
                                     </div>
-                                    <form class="user" method="POST" action="<?php echo $_SERVER['PHP_SELF'];?>">
+                                    <form class="user" method="POST" action="<?php echo $_SERVER['PHP_SELF']; ?>">
                                         <div class="form-group">
                                             <input type="text" class="form-control form-control-user" id="exampleInputEmail" name="usuario" aria-describedby="emailHelp" placeholder="Usuario">
                                         </div>
@@ -86,23 +88,12 @@ if ($_POST) {
                                             Iniciar Sesión
                                         </button>
                                         <hr>
-                                        <a href="index.html" class="btn btn-google btn-user btn-block">
-                                            <i class="fab fa-google fa-fw"></i> Iniciar con Google
-                                        </a>
-                                        <a href="index.html" class="btn btn-facebook btn-user btn-block">
-                                            <i class="fab fa-facebook-f fa-fw"></i> Iniciar con Facebook
-                                        </a>
                                     </form>
                                     <hr>
-                                    <div class="text-center">
-                                        <a class="small" href="forgot-password.html">¿Olvidaste tu contraseña?</a>
-                                    </div>
-                                    <div class="text-center">
-                                        <a class="small" href="register.html">¡Crear una cuenta!</a>
-                                    </div>
                                 </div>
                             </div>
                         </div>
+
                     </div>
                 </div>
             </div>
