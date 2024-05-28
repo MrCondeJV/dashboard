@@ -60,13 +60,16 @@ if (!empty($_POST["btnSolicitarAula"])) {
             }
 
             $sql = $mysqli->query("INSERT INTO solicitudes (nro_documento, nombre_solicitante, unidad_trabajo, correo, telefono, aula, descripcion_evento, cantidad_personas, fecha, hora_inicial, hora_final) VALUES ('$identificacion','$solicitante', '$unidad', '$correo', '$telefono', '$aula', '$descripcion', '$nroPersonas', '$fecha', '$hora_inicial', '$hora_final')");
-            
+
 
             if ($sql) {
                 echo "<script>
                 alert('Solicitud de aula registrada correctamente!!');
                 document.location='principal.html';
                 </script>";
+
+                header("Location: post_gmail.php");
+                exit();
             } else {
                 echo "<script>
                 alert('Error al registrar la solicitud: " . $mysqli->error . "');
@@ -76,7 +79,7 @@ if (!empty($_POST["btnSolicitarAula"])) {
         } else {
             echo "<script>
             alert('Faltan Campos!!');
-            console.log('Missing fields: Identificacion: " . $_POST['identificacion'] .", Nombre ".$_POST['nombreCompleto']. ", Unidad: " . $_POST['unidad'] . ", Correo: " . $_POST['correo'] . ", Telefono: " . $_POST['telefono'] . ", Aula: " . $_POST['aula'] . ", Descripcion: " . $_POST['descripcion'] . ", NroPersonas: " . $_POST['nroPersonas'] . ", Fecha: " . $_POST['fecha'] . ", Hora Inicial: " . $_POST['hora_inicial'] . ", Hora Final: " . $_POST['hora_final'] ."');
+            console.log('Missing fields: Identificacion: " . $_POST['identificacion'] . ", Nombre " . $_POST['nombreCompleto'] . ", Unidad: " . $_POST['unidad'] . ", Correo: " . $_POST['correo'] . ", Telefono: " . $_POST['telefono'] . ", Aula: " . $_POST['aula'] . ", Descripcion: " . $_POST['descripcion'] . ", NroPersonas: " . $_POST['nroPersonas'] . ", Fecha: " . $_POST['fecha'] . ", Hora Inicial: " . $_POST['hora_inicial'] . ", Hora Final: " . $_POST['hora_final'] . "');
             document.location='principal.html';
             </script>";
         }
@@ -87,4 +90,3 @@ if (!empty($_POST["btnSolicitarAula"])) {
         </script>";
     }
 }
-?>
