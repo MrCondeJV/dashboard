@@ -49,7 +49,7 @@ try {
     // Contenido
     $mail->isHTML(true);
     $mail->CharSet = 'UTF-8';
-    $mail->Body = sprintf('<h1>El mensaje es:</h1><br><p>%s</p><p><a href="%s">Visitar plataforma de préstamo de aulas</a></p>', $contenido, $enlace);
+    $mail->Body = sprintf('<h1>El mensaje es:</h1><br><p>%s</p><p><a href="%s">Visitar plataforma servicios ESFIM</a></p>', $contenido, $enlace);
 
 
 
