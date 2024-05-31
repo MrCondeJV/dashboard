@@ -16,7 +16,7 @@ $pdf->SetKeywords('TCPDF, PDF, ejemplo, prueba');
 $pdf->AddPage();
 
 // Conectar a la base de datos y recuperar los registros de la tabla historial
-$conn = new mysqli('localhost', 'root', '', 'db_das_esfim');
+$conn = new mysqli('15.235.86.58', 'esfimedu_luis', 'k%-eDD4n3xDz', 'esfimedu_db_das_esfim');
 
 if ($conn->connect_error) {
     die("Conexión fallida: " . $conn->connect_error);

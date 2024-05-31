@@ -137,7 +137,7 @@ $rol = $_SESSION['ID_Rol']
                     </button>
 
                     <!-- Topbar Search -->
-                   
+
 
                     <!-- Topbar Navbar -->
                     <ul class="navbar-nav ml-auto">
@@ -163,7 +163,7 @@ $rol = $_SESSION['ID_Rol']
                         </li>
 
                         <!-- Nav Item - Alerts -->
-                        
+
 
                         <div class="topbar-divider d-none d-sm-block"></div>
 
@@ -178,7 +178,7 @@ $rol = $_SESSION['ID_Rol']
                             </a>
                             <!-- Dropdown - User Information -->
                             <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in" aria-labelledby="userDropdown">
-                                
+
                                 <div class="dropdown-divider"></div>
                                 <a class="dropdown-item" href="./cerrar_sesion.php" data-toggle="modal" data-target="#logoutModal">
                                     <i class="fas fa-sign-out-alt fa-sm fa-fw mr-2 text-gray-400"></i>
@@ -198,7 +198,7 @@ $rol = $_SESSION['ID_Rol']
                     <!-- Page Heading -->
                     <div class="d-sm-flex align-items-center justify-content-between mb-4">
                         <h2>Administracion de <b>Usuarios</b></h2>
-                        
+
                     </div>
 
                     <!-- TABLA CRUD DE USUARIOS -->

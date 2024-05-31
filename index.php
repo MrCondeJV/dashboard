@@ -118,7 +118,7 @@ $rol = $_SESSION['ID_Rol']
 
 
         </ul>
- 
+
         <div id="content-wrapper" class="d-flex flex-column">
 
             <!-- Main Content -->
@@ -133,7 +133,7 @@ $rol = $_SESSION['ID_Rol']
                     </button>
 
                     <!-- Topbar Search -->
-                   
+
 
                     <!-- Topbar Navbar -->
                     <ul class="navbar-nav ml-auto">
@@ -159,10 +159,10 @@ $rol = $_SESSION['ID_Rol']
                         </li>
 
                         <!-- Nav Item - Alerts -->
-                        
+
 
                         <!-- Nav Item - Messages -->
-                        
+
 
                         <div class="topbar-divider d-none d-sm-block"></div>
 
@@ -179,7 +179,7 @@ $rol = $_SESSION['ID_Rol']
                             </a>
                             <!-- Dropdown - User Information -->
                             <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in" aria-labelledby="userDropdown">
-                                
+
                                 <div class="dropdown-divider"></div>
                                 <a class="dropdown-item" href="./cerrar_sesion.php" data-toggle="modal" data-target="#logoutModal">
                                     <i class="fas fa-sign-out-alt fa-sm fa-fw mr-2 text-gray-400"></i>
@@ -199,44 +199,33 @@ $rol = $_SESSION['ID_Rol']
                     <!-- Page Heading -->
                     <div class="d-sm-flex align-items-center justify-content-between mb-4">
                         <h1 class="h3 mb-0 text-gray-800">Dashboard</h1>
-                    
-                    </div>
 
+                    </div>
 
                     <!-- Begin Page Content -->
                     <div class="container-fluid">
 
-                    <img src="./img/Diseño sin título.png" class="img-fluid" alt="...">
-
-                        
-
-
-
-
-
-
-
-
+                        <img src="./img/background.png" class="img-fluid" alt="...">
 
                     </div>
                     <!-- /.container-fluid -->
-
                 </div>
-                <!-- End of Main Content -->
-
-                <!-- Footer -->
-                <footer class="sticky-footer bg-white">
-                    <div class="container my-auto">
-                        <div class="copyright text-center my-auto">
-                            <span>Copyright &copy; División de Tecnologías de la Información y de las Comunicaciones ESFIM </span>
-                        </div>
-                    </div>
-                </footer>
-                <!-- End of Footer -->
-
             </div>
+            <!-- End of Main Content -->
+
+            <!-- Footer -->
+            <footer class="sticky-footer bg-white">
+                <div class="container my-auto">
+                    <div class="copyright text-center my-auto">
+                        <span>Copyright &copy; División de Tecnologías de la Información y de las Comunicaciones ESFIM </span>
+                    </div>
+                </div>
+            </footer>
+            <!-- End of Footer -->
+
         </div>
-        <!-- End of Content Wrapper -->
+    </div>
+    <!-- End of Content Wrapper -->
 
     </div>
     <!-- End of Page Wrapper -->
