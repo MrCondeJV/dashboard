@@ -95,16 +95,13 @@ while ($row = $result->fetch_assoc()) {
 
 
             <!-- Nav Item - Tables -->
-            <li class="nav-item active">
+            <li class="nav-item">
                 <a class="nav-link" href="calendario.php">
                     <i class="fas fa-fw fa-calendar-day"></i>
                     <span>Calendario</span></a>
             </li>
-
-            <?php if ($rol == 1) { ?>
-
-                <!-- Nav Item - Tables -->
-                <li class="nav-item">
+             <!-- Nav Item - Tables -->
+             <li class="nav-item">
                     <a class="nav-link" href="tickets.php">
                         <i class="fas fa-fw fa-tags"></i>
                         <span>Tickets</span></a>
@@ -117,6 +114,10 @@ while ($row = $result->fetch_assoc()) {
                         <span>Historial</span></a>
                 </li>
 
+
+            <?php if ($rol == 1) { ?>
+
+               
                 <!-- Nav Item - Charts -->
                 <li class="nav-item">
                     <a class="nav-link" href="usuarios.php">
@@ -126,7 +127,6 @@ while ($row = $result->fetch_assoc()) {
 
 
             <?php } ?>
-
 
 
             <!-- Divider -->

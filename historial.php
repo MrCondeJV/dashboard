@@ -71,29 +71,30 @@ $rol = $_SESSION['ID_Rol']
                 Menú
             </div>
 
-            <!-- Nav Item - Tables -->
-            <li class="nav-item">
+           <!-- Nav Item - Tables -->
+           <li class="nav-item">
                 <a class="nav-link" href="calendario.php">
                     <i class="fas fa-fw fa-calendar-day"></i>
                     <span>Calendario</span></a>
             </li>
-
-            <?php if ($rol == 1) { ?>
-
-                <!-- Nav Item - Tables -->
-                <li class="nav-item">
+             <!-- Nav Item - Tables -->
+             <li class="nav-item">
                     <a class="nav-link" href="tickets.php">
                         <i class="fas fa-fw fa-tags"></i>
                         <span>Tickets</span></a>
                 </li>
 
                 <!-- Nav Item - Tables -->
-                <li class="nav-item active">
+                <li class="nav-item">
                     <a class="nav-link" href="historial.php">
                         <i class="fas fa-fw fa-sitemap"></i>
                         <span>Historial</span></a>
                 </li>
 
+
+            <?php if ($rol == 1) { ?>
+
+               
                 <!-- Nav Item - Charts -->
                 <li class="nav-item">
                     <a class="nav-link" href="usuarios.php">
@@ -103,7 +104,6 @@ $rol = $_SESSION['ID_Rol']
 
 
             <?php } ?>
-
             <!-- Divider -->
             <hr class="sidebar-divider d-none d-md-block">
 
