@@ -22,7 +22,7 @@ function sendApprovalEmail($to, $subject, $body) {
 
         $email = 'servicios.esfim@hotmail.com';
         $mail->Username = $email;
-        $mail->Password = 'owyzgugztgpztfvo';
+        $mail->Password = 'paryliptiyigykze';
 
         $mail->setFrom($email, 'Notificaciones ESFIM');
         $mail->addAddress($to);

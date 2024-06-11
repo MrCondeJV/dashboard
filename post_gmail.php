@@ -37,7 +37,7 @@ try {
     // Credenciales de la cuenta
     $email = 'servicios.esfim@hotmail.com';
     $mail->Username = $email;
-    $mail->Password = 'owyzgugztgpztfvo';
+    $mail->Password = 'paryliptiyigykze';
 
     // Quien envía este mensaje
     $mail->setFrom($email, 'Notificaciones ESFIM');
