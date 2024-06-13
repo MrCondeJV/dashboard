@@ -51,7 +51,9 @@ while ($row = $result->fetch_assoc()) {
 
     <!-- Custom fonts for this template-->
     <link href="vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
-    <link href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i" rel="stylesheet">
+    <link
+        href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i"
+        rel="stylesheet">
 
     <!-- Custom styles for this template-->
     <link href="css/sb-admin-2.min.css" rel="stylesheet">
@@ -71,7 +73,8 @@ while ($row = $result->fetch_assoc()) {
             <!-- Sidebar - Brand -->
             <a class="sidebar-brand d-flex align-items-center justify-content-center" href="index.php">
                 <div class="sidebar-brand-icon rotate-n-15">
-                    <img src="./img/esfim_logo.png" alt="ESFIM Logo" class="img-fluid sidebar-logo" style="max-width: 60px; height: auto;" srcset="">
+                    <img src="./img/esfim_logo.png" alt="ESFIM Logo" class="img-fluid sidebar-logo"
+                        style="max-width: 60px; height: auto;" srcset="">
                 </div>
                 <div class="sidebar-brand-text mx-3">ESFIM</div>
             </a>
@@ -103,12 +106,24 @@ while ($row = $result->fetch_assoc()) {
                     <i class="fas fa-fw fa-calendar-day"></i>
                     <span>Calendario</span></a>
             </li>
+<<<<<<< HEAD
             <!-- Nav Item - Tables -->
             <li class="nav-item">
                 <a class="nav-link" href="tickets.php">
                     <i class="fas fa-fw fa-tags"></i>
                     <span>Tickets</span></a>
             </li>
+=======
+
+            <?php if ($rol == 1) { ?>
+
+                <!-- Nav Item - Tables -->
+                <li class="nav-item">
+                    <a class="nav-link" href="tickets.php">
+                        <i class="fas fa-fw fa-tags"></i>
+                        <span>Tickets</span></a>
+                </li>
+>>>>>>> 1f7702227046dfae144d3fdc3b383cbe5154c2be
 
             <!-- Nav Item - Tables -->
             <li class="nav-item">
@@ -117,19 +132,24 @@ while ($row = $result->fetch_assoc()) {
                     <span>Historial</span></a>
             </li>
 
+<<<<<<< HEAD
 
             <?php if ($rol == 1) { ?>
 
 
+=======
+>>>>>>> 1f7702227046dfae144d3fdc3b383cbe5154c2be
                 <!-- Nav Item - Charts -->
-                <li class="nav-item">
-                    <a class="nav-link" href="usuarios.php">
-                        <i class="fas fa-fw fa-users"></i>
-                        <span>Usuarios</span></a>
-                </li>
-
+                <?php if ($rol != 3) { ?>
+                    <li class="nav-item">
+                        <a class="nav-link" href="usuarios.php">
+                            <i class="fas fa-fw fa-users"></i>
+                            <span>Usuarios</span></a>
+                    </li>
+                <?php } ?>
 
             <?php } ?>
+
 
 
             <!-- Divider -->
@@ -171,14 +191,18 @@ while ($row = $result->fetch_assoc()) {
 
                         <!-- Nav Item - Search Dropdown (Visible Only XS) -->
                         <li class="nav-item dropdown no-arrow d-sm-none">
-                            <a class="nav-link dropdown-toggle" href="#" id="searchDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            <a class="nav-link dropdown-toggle" href="#" id="searchDropdown" role="button"
+                                data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                 <i class="fas fa-search fa-fw"></i>
                             </a>
                             <!-- Dropdown - Messages -->
-                            <div class="dropdown-menu dropdown-menu-right p-3 shadow animated--grow-in" aria-labelledby="searchDropdown">
+                            <div class="dropdown-menu dropdown-menu-right p-3 shadow animated--grow-in"
+                                aria-labelledby="searchDropdown">
                                 <form class="form-inline mr-auto w-100 navbar-search">
                                     <div class="input-group">
-                                        <input type="text" class="form-control bg-light border-0 small" placeholder="Search for..." aria-label="Search" aria-describedby="basic-addon2">
+                                        <input type="text" class="form-control bg-light border-0 small"
+                                            placeholder="Search for..." aria-label="Search"
+                                            aria-describedby="basic-addon2">
                                         <div class="input-group-append">
                                             <button class="btn btn-primary" type="button">
                                                 <i class="fas fa-search fa-sm"></i>
@@ -197,18 +221,25 @@ while ($row = $result->fetch_assoc()) {
 
                         <!-- Nav Item - User Information -->
                         <li class="nav-item dropdown no-arrow">
-                            <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button"
+                                data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                 <span class="mr-2 d-none d-lg-inline text-gray-600 small"><?php
-                                                                                            echo $nombre;
+                                echo $nombre;
 
-                                                                                            ?></span>
+                                ?></span>
                                 <img class="img-profile rounded-circle" src="img/undraw_profile.svg">
                             </a>
                             <!-- Dropdown - User Information -->
+<<<<<<< HEAD
                             <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in" aria-labelledby="userDropdown">
+=======
+                            <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in"
+                                aria-labelledby="userDropdown">
+>>>>>>> 1f7702227046dfae144d3fdc3b383cbe5154c2be
 
                                 <div class="dropdown-divider"></div>
-                                <a class="dropdown-item" href="./cerrar_sesion.php" data-toggle="modal" data-target="#logoutModal">
+                                <a class="dropdown-item" href="./cerrar_sesion.php" data-toggle="modal"
+                                    data-target="#logoutModal">
                                     <i class="fas fa-sign-out-alt fa-sm fa-fw mr-2 text-gray-400"></i>
                                     Cerrar Sesión
                                 </a>
@@ -237,7 +268,8 @@ while ($row = $result->fetch_assoc()) {
                     </div>
 
                     <!-- Modal para mostrar detalles de la solicitud -->
-                    <div class="modal fade" id="solicitudModal" tabindex="-1" aria-labelledby="solicitudModalLabel" aria-hidden="true">
+                    <div class="modal fade" id="solicitudModal" tabindex="-1" aria-labelledby="solicitudModalLabel"
+                        aria-hidden="true">
                         <div class="modal-dialog">
                             <div class="modal-content">
                                 <div class="modal-header">
@@ -261,12 +293,18 @@ while ($row = $result->fetch_assoc()) {
 
                     <!-- Script adicional para inicializar el calendario con los eventos y manejar clics en los eventos -->
                     <script>
-                        document.addEventListener('DOMContentLoaded', function() {
+                        document.addEventListener('DOMContentLoaded', function () {
                             const calendarEl = document.getElementById('calendar');
                             const calendar = new FullCalendar.Calendar(calendarEl, {
                                 initialView: 'dayGridMonth',
+<<<<<<< HEAD
                                 events: <?php echo json_encode($eventos); ?>,
                                 eventClick: function(info) {
+=======
+                                events: <?php echo json_encode($eventos); ?>, // Agregar los eventos al calendario
+                                eventClick: function (info) {
+                                    // Obtener el ID de la solicitud del título del evento
+>>>>>>> 1f7702227046dfae144d3fdc3b383cbe5154c2be
                                     const titleParts = info.event.title.split(' - ');
                                     const solicitante = titleParts[0].split('Evento de ')[1];
                                     const aula = titleParts[1].split('Aula ')[1];
@@ -278,11 +316,16 @@ while ($row = $result->fetch_assoc()) {
                                             solicitante: solicitante,
                                             aula: aula
                                         },
+<<<<<<< HEAD
                                         success: function(response) {
+=======
+                                        success: function (response) {
+                                            // Mostrar detalles de la solicitud en el modal
+>>>>>>> 1f7702227046dfae144d3fdc3b383cbe5154c2be
                                             $('#detalleSolicitud').html(response);
                                             $('#solicitudModal').modal('show');
                                         },
-                                        error: function(xhr, status, error) {
+                                        error: function (xhr, status, error) {
                                             console.error(xhr.responseText);
                                         }
                                     });
@@ -292,8 +335,11 @@ while ($row = $result->fetch_assoc()) {
                         });
                     </script>
 
+<<<<<<< HEAD
 
 
+=======
+>>>>>>> 1f7702227046dfae144d3fdc3b383cbe5154c2be
                 </div>
 
                 <!-- /.container-fluid -->
@@ -304,7 +350,8 @@ while ($row = $result->fetch_assoc()) {
                 <footer class="sticky-footer bg-white">
                     <div class="container my-auto">
                         <div class="copyright text-center my-auto">
-                            <span>Copyright &copy; División de Tecnologías de la Información y de las Comunicaciones ESFIM </span>
+                            <span>Copyright &copy; División de Tecnologías de la Información y de las
+                                Comunicaciones ESFIM </span>
                         </div>
                     </div>
                 </footer>
@@ -322,7 +369,8 @@ while ($row = $result->fetch_assoc()) {
         </a>
 
         <!-- Logout Modal-->
-        <div class="modal fade" id="logoutModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal fade" id="logoutModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+            aria-hidden="true">
             <div class="modal-dialog" role="document">
                 <div class="modal-content">
                     <div class="modal-header">
@@ -331,7 +379,8 @@ while ($row = $result->fetch_assoc()) {
                             <span aria-hidden="true">×</span>
                         </button>
                     </div>
-                    <div class="modal-body">Seleccione "Cerrar sesión" a continuación si está listo para finalizar su sesión actual.</div>
+                    <div class="modal-body">Seleccione "Cerrar sesión" a continuación si está listo para finalizar su
+                        sesión actual.</div>
                     <div class="modal-footer">
                         <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancelar</button>
                         <a class="btn btn-primary" href="./cerrar_sesion.php">Cerrar Sesión</a>
