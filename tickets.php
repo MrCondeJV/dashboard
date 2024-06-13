@@ -8,7 +8,7 @@ if (!isset($_SESSION['id'])) {
 
 $nombre = $_SESSION['nombre'];
 $rol = $_SESSION['ID_Rol']
-    ?>
+?>
 
 <!DOCTYPE html>
 <html lang="es">
@@ -24,9 +24,7 @@ $rol = $_SESSION['ID_Rol']
 
     <!-- Custom fonts for this template-->
     <link href="vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
-    <link
-        href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i"
-        rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i" rel="stylesheet">
 
     <!-- Custom styles for this template-->
     <link href="css/sb-admin-2.min.css" rel="stylesheet">
@@ -43,8 +41,7 @@ $rol = $_SESSION['ID_Rol']
             <!-- Sidebar - Brand -->
             <a class="sidebar-brand d-flex align-items-center justify-content-center" href="index.php">
                 <div class="sidebar-brand-icon rotate-n-15">
-                    <img src="./img/esfim_logo.png" alt="ESFIM Logo" class="img-fluid sidebar-logo"
-                        style="max-width: 60px; height: auto;" srcset="">
+                    <img src="./img/esfim_logo.png" alt="ESFIM Logo" class="img-fluid sidebar-logo" style="max-width: 60px; height: auto;" srcset="">
                 </div>
                 <div class="sidebar-brand-text mx-3">ESFIM</div>
             </a>
@@ -67,37 +64,15 @@ $rol = $_SESSION['ID_Rol']
                 Menú
             </div>
 
+
             <!-- Nav Item - Tables -->
             <li class="nav-item">
                 <a class="nav-link" href="calendario.php">
                     <i class="fas fa-fw fa-calendar-day"></i>
                     <span>Calendario</span></a>
             </li>
-            <!-- Nav Item - Tables -->
-            <li class="nav-item">
-                <a class="nav-link" href="tickets.php">
-                    <i class="fas fa-fw fa-tags"></i>
-                    <span>Tickets</span></a>
-            </li>
-
-            <!-- Nav Item - Tables -->
-            <li class="nav-item">
-                <a class="nav-link" href="historial.php">
-                    <i class="fas fa-fw fa-sitemap"></i>
-                    <span>Historial</span></a>
-            </li>
 
             <?php if ($rol == 1) { ?>
-<<<<<<< HEAD
-                <!-- Nav Item - Charts -->
-                <li class="nav-item">
-                    <a class="nav-link" href="usuarios.php">
-                        <i class="fas fa-fw fa-users"></i>
-                        <span>Usuarios</span></a>
-                </li>
-            <?php } ?>
-
-=======
 
                 <!-- Nav Item - Tables -->
                 <li class="nav-item">
@@ -124,10 +99,6 @@ $rol = $_SESSION['ID_Rol']
 
             <?php } ?>
 
-
-
-
->>>>>>> 1f7702227046dfae144d3fdc3b383cbe5154c2be
             <!-- Divider -->
             <hr class="sidebar-divider d-none d-md-block">
 
@@ -149,18 +120,6 @@ $rol = $_SESSION['ID_Rol']
                         <i class="fa fa-bars"></i>
                     </button>
 
-<<<<<<< HEAD
-                    <!-- Topbar Navbar -->
-                    <ul class="navbar-nav ml-auto">
-                        <!-- Nav Item - User Information -->
-                        <li class="nav-item dropdown no-arrow">
-                            <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                <span class="mr-2 d-none d-lg-inline text-gray-600 small"><?php echo $nombre; ?></span>
-                                <img class="img-profile rounded-circle" src="img/undraw_profile.svg">
-                            </a>
-                            <!-- Dropdown - User Information -->
-                            <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in" aria-labelledby="userDropdown">
-=======
                     <!-- Topbar Search -->
 
                     <!-- Topbar Navbar -->
@@ -173,22 +132,18 @@ $rol = $_SESSION['ID_Rol']
 
                         <!-- Nav Item - User Information -->
                         <li class="nav-item dropdown no-arrow">
-                            <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button"
-                                data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                 <span class="mr-2 d-none d-lg-inline text-gray-600 small"><?php
-                                echo $nombre;
+                                                                                            echo $nombre;
 
-                                ?></span>
+                                                                                            ?></span>
                                 <img class="img-profile rounded-circle" src="img/undraw_profile.svg">
                             </a>
                             <!-- Dropdown - User Information -->
-                            <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in"
-                                aria-labelledby="userDropdown">
+                            <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in" aria-labelledby="userDropdown">
 
->>>>>>> 1f7702227046dfae144d3fdc3b383cbe5154c2be
                                 <div class="dropdown-divider"></div>
-                                <a class="dropdown-item" href="./cerrar_sesion.php" data-toggle="modal"
-                                    data-target="#logoutModal">
+                                <a class="dropdown-item" href="./cerrar_sesion.php" data-toggle="modal" data-target="#logoutModal">
                                     <i class="fas fa-sign-out-alt fa-sm fa-fw mr-2 text-gray-400"></i>
                                     Cerrar Sesión
                                 </a>
@@ -203,12 +158,9 @@ $rol = $_SESSION['ID_Rol']
                     <!-- Page Heading -->
                     <div class="d-sm-flex align-items-center justify-content-between mb-4">
                         <h1 class="h3 mb-0 text-gray-800">Tickets</h1>
-<<<<<<< HEAD
-=======
 
 
                         </a>
->>>>>>> 1f7702227046dfae144d3fdc3b383cbe5154c2be
                     </div>
 
                     <!-- Begin Page Content -->
@@ -231,7 +183,7 @@ $rol = $_SESSION['ID_Rol']
                                             <th>Descripcion</th>
                                             <th>Nro. Personas</th>
                                             <th>Fecha Inicio</th>
-                                            <th>Fecha Final</th>                                         
+                                            <th>Fecha Final</th>
                                             <th>Doc</th>
                                             <th>Acciones</th>
                                         </tr>
@@ -252,7 +204,7 @@ $rol = $_SESSION['ID_Rol']
                                                 <td><?php echo $datos->descripcion_evento ?></td>
                                                 <td><?php echo $datos->cantidad_personas ?></td>
                                                 <td><?php echo $datos->fecha_inicial ?></td>
-                                                <td><?php echo $datos->fecha_final ?></td>                                              
+                                                <td><?php echo $datos->fecha_final ?></td>
                                                 <td>
                                                     <a href="uploads/<?php echo $datos->docPdf ?>" download>
                                                         <i class="fas fa-download"></i>
@@ -260,35 +212,14 @@ $rol = $_SESSION['ID_Rol']
                                                 </td>
                                                 <td>
                                                     <!-- Form for approving the ticket -->
-<<<<<<< HEAD
                                                     <form method="POST" action="aprobar_solicitud.php" style="display:inline;">
                                                         <input type="hidden" name="solicitud_id" value="<?php echo $datos->id ?>">
-                                                        <button type="submit" name="btnAprobarTicket" class="btn btn-success">
-                                                            <i class="fas fa-check"></i>
-                                                        </button>
+                                                        <button type="submit" name="btnAprobarTicket" class="btn btn-success">Aprobar</button>
                                                     </form>
                                                     <!-- Form for rejecting the ticket -->
                                                     <form method="POST" action="rechazar_solicitud.php" style="display:inline;">
                                                         <input type="hidden" name="solicitud_id" value="<?php echo $datos->id ?>">
-                                                        <button type="submit" name="btnReprobarTicket" class="btn btn-danger">
-                                                            <i class="fas fa-times"></i>
-                                                        </button>
-=======
-                                                    <form method="POST" action="aprobar_solicitud.php"
-                                                        style="display:inline;">
-                                                        <input type="hidden" name="solicitud_id"
-                                                            value="<?php echo $datos->id ?>">
-                                                        <button type="submit" name="btnAprobarTicket"
-                                                            class="btn btn-success">Aprobar</button>
-                                                    </form>
-                                                    <!-- Form for rejecting the ticket -->
-                                                    <form method="POST" action="rechazar_solicitud.php"
-                                                        style="display:inline;">
-                                                        <input type="hidden" name="solicitud_id"
-                                                            value="<?php echo $datos->id ?>">
-                                                        <button type="submit" name="btnReprobarTicket"
-                                                            class="btn btn-danger">Rechazar</button>
->>>>>>> 1f7702227046dfae144d3fdc3b383cbe5154c2be
+                                                        <button type="submit" name="btnReprobarTicket" class="btn btn-danger">Rechazar</button>
                                                     </form>
                                                 </td>
                                             </tr>
@@ -305,12 +236,8 @@ $rol = $_SESSION['ID_Rol']
             <footer class="sticky-footer bg-white">
                 <div class="container my-auto">
                     <div class="copyright text-center my-auto">
-<<<<<<< HEAD
-                        <span>Copyright &copy; División de Tecnologías de la Información y de las Comunicaciones ESFIM</span>
-=======
                         <span>Copyright &copy; División de Tecnologías de la Información y de las Comunicaciones ESFIM
                         </span>
->>>>>>> 1f7702227046dfae144d3fdc3b383cbe5154c2be
                     </div>
                 </div>
             </footer>
@@ -326,8 +253,7 @@ $rol = $_SESSION['ID_Rol']
     </a>
 
     <!-- Logout Modal-->
-    <div class="modal fade" id="logoutModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
-        aria-hidden="true">
+    <div class="modal fade" id="logoutModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
         <div class="modal-dialog" role="document">
             <div class="modal-content">
                 <div class="modal-header">
