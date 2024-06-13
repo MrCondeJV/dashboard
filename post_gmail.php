@@ -37,7 +37,7 @@ try {
     // Credenciales de la cuenta
     $email = 'servicios.esfim@hotmail.com';
     $mail->Username = $email;
-    $mail->Password = 'owyzgugztgpztfvo';
+    $mail->Password = 'paryliptiyigykze';
 
     // Quien envía este mensaje
     $mail->setFrom($email, 'Notificaciones ESFIM');
@@ -64,5 +64,7 @@ try {
     echo "<script>alert('Mensaje enviado con éxito a todos los destinatarios')</script>";
     exit();
 } catch (Exception $e) {
+    
     echo "<script>alert('Error al enviar el correo: {$e->getMessage()}')</script>";
+    header("Location: principal.html");
 }

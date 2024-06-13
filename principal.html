@@ -657,7 +657,11 @@
                     Solicitar Aula
                   </h1>
                 </div>
-                <form method="POST" action="solicitar_aula.php">
+                <form
+                  method="POST"
+                  action="solicitar_aula.php"
+                  enctype="multipart/form-data"
+                >
                   <div class="modal-body">
                     <div class="mb-3">
                       <label class="form-label">Nro. Identificación</label>
@@ -713,8 +717,12 @@
                       <label class="form-label">Aula a solicitar</label>
                       <select name="aula" class="form-control" required>
                         <option value="Aula Maxima">Aula Máxima</option>
-                        <option value="Centro de Convenciones">Centro de Convenciones</option>
-                        <option value="Juegos de Guerra">Sala de Juegos de Guerra</option>
+                        <option value="Centro de Convenciones">
+                          Centro de Convenciones
+                        </option>
+                        <option value="Juegos de Guerra">
+                          Sala de Juegos de Guerra
+                        </option>
                         <option value="Biblioteca">Biblioteca</option>
                       </select>
                     </div>
@@ -738,30 +746,34 @@
                         required
                       />
                     </div>
+                      <div class="mb-3">
+                        <label class="form-label">Fecha y Hora de Inicio</label>
+                        <input
+                          type="datetime-local"
+                          class="form-control"
+                          name="fecha_inicio"
+                          required
+                        />
+                      </div>
+                      <div class="mb-3">
+                        <label class="form-label"
+                          >Fecha y Hora de Terminación</label
+                        >
+                        <input
+                          type="datetime-local"
+                          class="form-control"
+                          name="fecha_terminacion"
+                          required
+                        />
+                      </div>
+                      
                     <div class="mb-3">
-                      <label class="form-label">Fecha</label>
+                      <label class="form-label">Cargar archivo PDF</label>
                       <input
-                        type="date"
+                        type="file"
                         class="form-control"
-                        name="fecha"
-                        required
-                      />
-                    </div>
-                    <div class="mb-3">
-                      <label class="form-label">Hora Inicial</label>
-                      <input
-                        type="time"
-                        class="form-control"
-                        name="hora_inicial"
-                        required
-                      />
-                    </div>
-                    <div class="mb-3">
-                      <label class="form-label">Hora Final</label>
-                      <input
-                        type="time"
-                        class="form-control"
-                        name="hora_final"
+                        name="archivo_pdf"
+                        accept=".pdf"
                         required
                       />
                     </div>

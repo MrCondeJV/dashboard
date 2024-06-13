@@ -39,7 +39,7 @@ $rol = $_SESSION['ID_Rol']
     <div id="wrapper">
 
         <!-- Sidebar -->
-        <ul class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion" id="accordionSidebar">
+        <ul class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion toggled" id="accordionSidebar">
 
             <!-- Sidebar - Brand -->
             <a class="sidebar-brand d-flex align-items-center justify-content-center" href="index.php">
@@ -77,11 +77,8 @@ $rol = $_SESSION['ID_Rol']
                     <i class="fas fa-fw fa-calendar-day"></i>
                     <span>Calendario</span></a>
             </li>
-
-            <?php if ($rol == 1) { ?>
-
-                <!-- Nav Item - Tables -->
-                <li class="nav-item">
+             <!-- Nav Item - Tables -->
+             <li class="nav-item">
                     <a class="nav-link" href="tickets.php">
                         <i class="fas fa-fw fa-tags"></i>
                         <span>Tickets</span></a>
@@ -94,6 +91,10 @@ $rol = $_SESSION['ID_Rol']
                         <span>Historial</span></a>
                 </li>
 
+
+            <?php if ($rol == 1) { ?>
+
+               
                 <!-- Nav Item - Charts -->
                 <li class="nav-item">
                     <a class="nav-link" href="usuarios.php">

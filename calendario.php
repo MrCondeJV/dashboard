@@ -22,9 +22,11 @@ $eventos = array();
 // Recorrer los resultados y agregarlos al array de eventos
 while ($row = $result->fetch_assoc()) {
     // Formatear el evento para que sea compatible con el calendario
+    // Aquí se asume que las fechas están en formato adecuado para FullCalendar
     $evento = array(
-        'title' => 'Solicitud de ' . $row['solicitante'] . ' - Aula ' . $row['aula_solicitada'],
-        'start' => $row['fecha_inicial'], // Solo necesitamos la fecha de inicio
+        'title' => 'Evento de ' . $row['solicitante'] . ' - Aula ' . $row['aula_solicitada'],
+        'start' => $row['fecha_inicial'], // Fecha de inicio del evento
+        'end' => $row['fecha_final'], // Fecha de fin del evento
         'color' => '#28a745' // Color verde para las solicitudes aprobadas
     );
 
@@ -32,6 +34,7 @@ while ($row = $result->fetch_assoc()) {
     array_push($eventos, $evento);
 }
 ?>
+
 
 <!DOCTYPE html>
 <html lang="es">
@@ -53,8 +56,8 @@ while ($row = $result->fetch_assoc()) {
     <!-- Custom styles for this template-->
     <link href="css/sb-admin-2.min.css" rel="stylesheet">
     <script src="https://cdn.jsdelivr.net/npm/fullcalendar@6.1.11/index.global.min.js"></script>
-    
-    
+
+
 </head>
 
 <body id="page-top">
@@ -63,7 +66,7 @@ while ($row = $result->fetch_assoc()) {
     <div id="wrapper">
 
         <!-- Sidebar -->
-        <ul class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion" id="accordionSidebar">
+        <ul class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion toggled" id="accordionSidebar">
 
             <!-- Sidebar - Brand -->
             <a class="sidebar-brand d-flex align-items-center justify-content-center" href="index.php">
@@ -100,24 +103,24 @@ while ($row = $result->fetch_assoc()) {
                     <i class="fas fa-fw fa-calendar-day"></i>
                     <span>Calendario</span></a>
             </li>
-             <!-- Nav Item - Tables -->
-             <li class="nav-item">
-                    <a class="nav-link" href="tickets.php">
-                        <i class="fas fa-fw fa-tags"></i>
-                        <span>Tickets</span></a>
-                </li>
+            <!-- Nav Item - Tables -->
+            <li class="nav-item">
+                <a class="nav-link" href="tickets.php">
+                    <i class="fas fa-fw fa-tags"></i>
+                    <span>Tickets</span></a>
+            </li>
 
-                <!-- Nav Item - Tables -->
-                <li class="nav-item">
-                    <a class="nav-link" href="historial.php">
-                        <i class="fas fa-fw fa-sitemap"></i>
-                        <span>Historial</span></a>
-                </li>
+            <!-- Nav Item - Tables -->
+            <li class="nav-item">
+                <a class="nav-link" href="historial.php">
+                    <i class="fas fa-fw fa-sitemap"></i>
+                    <span>Historial</span></a>
+            </li>
 
 
             <?php if ($rol == 1) { ?>
 
-               
+
                 <!-- Nav Item - Charts -->
                 <li class="nav-item">
                     <a class="nav-link" href="usuarios.php">
@@ -161,7 +164,7 @@ while ($row = $result->fetch_assoc()) {
                     </button>
 
                     <!-- Topbar Search -->
-                    
+
 
                     <!-- Topbar Navbar -->
                     <ul class="navbar-nav ml-auto">
@@ -187,9 +190,9 @@ while ($row = $result->fetch_assoc()) {
                         </li>
 
                         <!-- Nav Item - Alerts -->
-                        
+
                         <!-- Nav Item - Messages -->
-                        
+
                         <div class="topbar-divider d-none d-sm-block"></div>
 
                         <!-- Nav Item - User Information -->
@@ -203,7 +206,7 @@ while ($row = $result->fetch_assoc()) {
                             </a>
                             <!-- Dropdown - User Information -->
                             <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in" aria-labelledby="userDropdown">
-                                
+
                                 <div class="dropdown-divider"></div>
                                 <a class="dropdown-item" href="./cerrar_sesion.php" data-toggle="modal" data-target="#logoutModal">
                                     <i class="fas fa-sign-out-alt fa-sm fa-fw mr-2 text-gray-400"></i>
@@ -223,7 +226,7 @@ while ($row = $result->fetch_assoc()) {
                     <!-- Page Heading -->
                     <div class="d-sm-flex align-items-center justify-content-between mb-4">
                         <h1 class="h3 mb-0 text-gray-800">Calendario</h1>
-                       
+
                     </div>
 
 
@@ -262,14 +265,12 @@ while ($row = $result->fetch_assoc()) {
                             const calendarEl = document.getElementById('calendar');
                             const calendar = new FullCalendar.Calendar(calendarEl, {
                                 initialView: 'dayGridMonth',
-                                events: <?php echo json_encode($eventos); ?>, // Agregar los eventos al calendario
+                                events: <?php echo json_encode($eventos); ?>,
                                 eventClick: function(info) {
-                                    // Obtener el ID de la solicitud del título del evento
                                     const titleParts = info.event.title.split(' - ');
-                                    const solicitante = titleParts[0].split('Solicitud de ')[1];
+                                    const solicitante = titleParts[0].split('Evento de ')[1];
                                     const aula = titleParts[1].split('Aula ')[1];
 
-                                    // Enviar solicitud AJAX para obtener detalles de la solicitud
                                     $.ajax({
                                         url: 'detalles_solicitud.php',
                                         type: 'POST',
@@ -278,7 +279,6 @@ while ($row = $result->fetch_assoc()) {
                                             aula: aula
                                         },
                                         success: function(response) {
-                                            // Mostrar detalles de la solicitud en el modal
                                             $('#detalleSolicitud').html(response);
                                             $('#solicitudModal').modal('show');
                                         },
@@ -291,7 +291,9 @@ while ($row = $result->fetch_assoc()) {
                             calendar.render();
                         });
                     </script>
-                    
+
+
+
                 </div>
 
                 <!-- /.container-fluid -->

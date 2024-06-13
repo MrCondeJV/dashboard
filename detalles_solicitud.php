@@ -21,7 +21,7 @@ if (isset($_POST['solicitante']) && isset($_POST['aula'])) {
         $detalles .= "<b>Fecha de inicio:</b> " . $row['fecha_inicial'] . "<br>";
         $detalles .= "<b>Fecha final:</b> " . $row['fecha_final'] . "<br>";
         $detalles .= "<b>Estado:</b> " . $row['estado'] . "<br>";
-        // Agrega más detalles según sea necesario
+        // Agregar más detalles según sea necesario
     } else {
         // No se encontraron detalles para la solicitud
         $detalles = "No se encontraron detalles para esta solicitud.";

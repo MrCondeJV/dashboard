@@ -22,7 +22,7 @@ function sendApprovalEmail($to, $subject, $body) {
 
         $email = 'servicios.esfim@hotmail.com';
         $mail->Username = $email;
-        $mail->Password = 'owyzgugztgpztfvo';
+        $mail->Password = 'paryliptiyigykze';
 
         $mail->setFrom($email, 'Notificaciones ESFIM');
         $mail->addAddress($to);
@@ -53,8 +53,8 @@ if (!empty($_POST['solicitud_id'])) {
         $solicitante = $solicitud->nombre_solicitante;
         $aula_solicitada = $solicitud->aula;
         $correo = $solicitud->correo;
-        $fecha_inicio = $solicitud->fecha . " " . $solicitud->hora_inicial;
-        $fecha_fin = $solicitud->fecha . " " . $solicitud->hora_final;
+        $fecha_inicio = $solicitud->fecha_inicial;
+        $fecha_fin = $solicitud->fecha_final;
         $estado = 'Aprobada';
 
         $sql_historial = $mysqli->query("INSERT INTO historial (cod_ticket, fecha_prestamo, solicitante, aula_solicitada, fecha_inicial, fecha_final, aprueba, estado) VALUES ('$cod_ticket', '$fecha_prestamo', '$solicitante', '$aula_solicitada', '$fecha_inicio', '$fecha_fin', '$aprueba', '$estado')");

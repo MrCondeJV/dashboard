@@ -12,7 +12,7 @@ if (!empty($_POST["btnSolicitarAula"])) {
     $recaptchaData = json_decode($recaptchaResponse);
 
     if ($recaptchaData->success) {
-        if (!empty($_POST["identificacion"]) && !empty($_POST["nombreCompleto"]) && !empty($_POST["unidad"]) && !empty($_POST["correo"]) && !empty($_POST["telefono"]) && !empty($_POST["aula"]) && !empty($_POST["descripcion"]) && !empty($_POST["nroPersonas"]) && !empty($_POST["fecha"]) && !empty($_POST["hora_inicial"]) && !empty($_POST["hora_final"])) {
+        if (!empty($_POST["identificacion"]) && !empty($_POST["nombreCompleto"]) && !empty($_POST["unidad"]) && !empty($_POST["correo"]) && !empty($_POST["telefono"]) && !empty($_POST["aula"]) && !empty($_POST["descripcion"]) && !empty($_POST["nroPersonas"]) && !empty($_POST["fecha_inicio"]) && !empty($_POST["fecha_terminacion"]) && !empty($_FILES["archivo_pdf"])) {
             include "./conexion.php"; // Asegúrate de incluir la conexión aquí para usar $mysqli
 
             $identificacion = $mysqli->real_escape_string($_POST["identificacion"]);
@@ -23,27 +23,56 @@ if (!empty($_POST["btnSolicitarAula"])) {
             $aula = $mysqli->real_escape_string($_POST["aula"]);
             $descripcion = $mysqli->real_escape_string($_POST["descripcion"]);
             $nroPersonas = $mysqli->real_escape_string($_POST["nroPersonas"]);
-            $fecha = $mysqli->real_escape_string($_POST["fecha"]);
-            $hora_inicial = $mysqli->real_escape_string($_POST["hora_inicial"]);
-            $hora_final = $mysqli->real_escape_string($_POST["hora_final"]);
+            $fecha_inicio = $mysqli->real_escape_string($_POST["fecha_inicio"]);
+            $fecha_terminacion = $mysqli->real_escape_string($_POST["fecha_terminacion"]);
 
-            // Convertir las horas a formato de 24 horas para la comparación
-            $hora_inicial_dt = new DateTime($hora_inicial);
-            $hora_final_dt = new DateTime($hora_final);
+            // Validación y subida del archivo PDF
+            $targetDir = "uploads/";
+            $fileName = basename($_FILES["archivo_pdf"]["name"]);
+            $targetFilePath = $targetDir . $fileName;
+            $fileType = pathinfo($targetFilePath, PATHINFO_EXTENSION);
 
-            if ($hora_final_dt <= $hora_inicial_dt) {
-                ob_end_clean(); // Limpiar el buffer de salida antes de enviar el header
+            // Verificar si el archivo es un PDF
+            if ($fileType != "pdf") {
+                ob_end_clean();
                 echo "<script>
-                alert('La hora final no puede ser menor o igual a la hora inicial.');
+                alert('Solo se permiten archivos PDF.');
                 document.location='principal.html';
                 </script>";
                 exit;
             }
 
-            // Verificar si hay solapamientos en las horas con otros registros
-            $query = "SELECT * FROM solicitudes WHERE aula = '$aula' AND fecha = '$fecha' AND (
-                        (hora_inicial < '$hora_final' AND hora_final > '$hora_inicial') OR
-                        (hora_inicial <= '$hora_inicial' AND hora_final >= '$hora_final')
+            // Subir el archivo al servidor
+            if (!move_uploaded_file($_FILES["archivo_pdf"]["tmp_name"], $targetFilePath)) {
+                ob_end_clean();
+                echo "<script>
+                alert('Error al subir el archivo.');
+                document.location='principal.html';
+                </script>";
+                exit;
+            }
+
+            // Convertir las fechas y horas a DateTime para la comparación
+            $inicio_dt = new DateTime($fecha_inicio);
+            $fin_dt = new DateTime($fecha_terminacion);
+
+            if ($fin_dt <= $inicio_dt) {
+                ob_end_clean(); // Limpiar el buffer de salida antes de enviar el header
+                echo "<script>
+                alert('La fecha y hora final no pueden ser menores o iguales a la fecha y hora inicial.');
+                document.location='principal.html';
+                </script>";
+                exit;
+            }
+
+            // Convertir DateTime a formato string para la consulta SQL
+            $inicio_str = $inicio_dt->format('Y-m-d H:i:s');
+            $fin_str = $fin_dt->format('Y-m-d H:i:s');
+
+            // Verificar si hay solapamientos en las fechas y horas con otros registros
+            $query = "SELECT * FROM solicitudes WHERE aula = '$aula' AND (
+                        ('$inicio_str' < fecha_final AND '$fin_str' > fecha_inicial) OR
+                        ('$inicio_str' <= fecha_inicial AND '$fin_str' >= fecha_final)
                     )";
 
             $result = $mysqli->query($query);
@@ -51,13 +80,13 @@ if (!empty($_POST["btnSolicitarAula"])) {
             if ($result->num_rows > 0) {
                 ob_end_clean(); // Limpiar el buffer de salida antes de enviar el header
                 echo "<script>
-                alert('Las horas solicitadas se solapan con otra reserva.');
+                alert('Las fechas y horas solicitadas se solapan con otra reserva.');
                 document.location='principal.html';
                 </script>";
                 exit;
             }
 
-            $sql = $mysqli->query("INSERT INTO solicitudes (nro_documento, nombre_solicitante, unidad_trabajo, correo, telefono, aula, descripcion_evento, cantidad_personas, fecha, hora_inicial, hora_final) VALUES ('$identificacion','$solicitante', '$unidad', '$correo', '$telefono', '$aula', '$descripcion', '$nroPersonas', '$fecha', '$hora_inicial', '$hora_final')");
+            $sql = $mysqli->query("INSERT INTO solicitudes (nro_documento, nombre_solicitante, unidad_trabajo, correo, telefono, aula, descripcion_evento, cantidad_personas, fecha_inicial, fecha_final, docPdf) VALUES ('$identificacion','$solicitante', '$unidad', '$correo', '$telefono', '$aula', '$descripcion', '$nroPersonas', '$inicio_str', '$fin_str', '$fileName')");
 
             if ($sql) {
                 ob_end_clean(); // Limpiar el buffer de salida antes de enviar el header

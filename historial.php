@@ -41,7 +41,7 @@ $rol = $_SESSION['ID_Rol']
     <div id="wrapper">
 
         <!-- Sidebar -->
-        <ul class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion" id="accordionSidebar">
+        <ul class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion toggled" id="accordionSidebar">
 
             <!-- Sidebar - Brand -->
             <a class="sidebar-brand d-flex align-items-center justify-content-center" href="index.php">
@@ -348,9 +348,9 @@ $rol = $_SESSION['ID_Rol']
                                         document.getElementById('detalle-aula').textContent = datos.aula;
                                         document.getElementById('detalle-descripcion-evento').textContent = datos.descripcion_evento;
                                         document.getElementById('detalle-cantidad-personas').textContent = datos.cantidad_personas;
-                                        document.getElementById('detalle-fecha').textContent = datos.fecha;
-                                        document.getElementById('detalle-hora-inicial').textContent = datos.hora_inicial;
-                                        document.getElementById('detalle-hora-final').textContent = datos.hora_final;
+                                        document.getElementById('detalle-fecha-inicial').textContent = datos.fecha_inicial;
+                                        document.getElementById('detalle-fecha-final').textContent = datos.fecha_final;
+                                        
 
                                         // Mostrar el modal
                                         var myModal = new bootstrap.Modal(document.getElementById('staticBackdrop'));
