@@ -9,7 +9,7 @@ if (!isset($_SESSION['id'])) {
 
 $nombre = $_SESSION['nombre'];
 $rol = $_SESSION['ID_Rol']
-    ?>
+?>
 
 
 <!DOCTYPE html>
@@ -34,6 +34,11 @@ $rol = $_SESSION['ID_Rol']
 
     <!-- Custom styles for this template-->
     <link href="css/sb-admin-2.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="css/dataTables.bootstrap4.min.css" />
+    <link rel="stylesheet" href="css/animate.css" />
+    
+    
+
 
 </head>
 
@@ -169,9 +174,9 @@ $rol = $_SESSION['ID_Rol']
                             <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button"
                                 data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                 <span class="mr-2 d-none d-lg-inline text-gray-600 small"><?php
-                                echo $nombre;
+                                                                                            echo $nombre;
 
-                                ?></span>
+                                                                                            ?></span>
                                 <img class="img-profile rounded-circle" src="img/undraw_profile.svg">
                             </a>
                             <!-- Dropdown - User Information -->
@@ -213,14 +218,15 @@ $rol = $_SESSION['ID_Rol']
 
 
                             <div class="table-responsive">
-                                <table class="table table-bordered table-striped table-hover">
+                                <table class="table datanew ">
                                     <thead>
                                         <tr>
-                                            <th>ID</th>
+                                            
                                             <th>Codigo Ticket</th>
                                             <th>Fecha Prestamo</th>
                                             <th>Solicitante</th>
                                             <th>Aula Solicitada</th>
+                                            <th>Nro. Personas</th>
                                             <th>Fecha Inicio</th>
                                             <th>Fecha Termino</th>
                                             <th>Validador</th>
@@ -235,11 +241,12 @@ $rol = $_SESSION['ID_Rol']
                                         while ($datos = $sql->fetch_object()) { ?>
 
                                             <tr>
-                                                <td><?php echo $datos->ID ?></td>
+                                                
                                                 <td><?php echo $datos->cod_ticket ?></td>
                                                 <td><?php echo $datos->fecha_prestamo ?></td>
                                                 <td><?php echo $datos->solicitante ?></td>
                                                 <td><?php echo $datos->aula_solicitada ?></td>
+                                                <td><?php echo $datos->cantidad ?></td>
                                                 <td><?php echo $datos->fecha_inicial ?></td>
                                                 <td><?php echo $datos->fecha_final ?></td>
                                                 <td><?php echo $datos->aprueba ?></td>
@@ -346,7 +353,7 @@ $rol = $_SESSION['ID_Rol']
                                 data: {
                                     id: id
                                 },
-                                success: function (response) {
+                                success: function(response) {
                                     const datos = JSON.parse(response);
                                     if (datos.error) {
                                         alert(datos.error);
@@ -362,14 +369,14 @@ $rol = $_SESSION['ID_Rol']
                                         document.getElementById('detalle-cantidad-personas').textContent = datos.cantidad_personas;
                                         document.getElementById('detalle-fecha-inicial').textContent = datos.fecha_inicial;
                                         document.getElementById('detalle-fecha-final').textContent = datos.fecha_final;
-                                        
+
 
                                         // Mostrar el modal
                                         var myModal = new bootstrap.Modal(document.getElementById('staticBackdrop'));
                                         myModal.show();
                                     }
                                 },
-                                error: function () {
+                                error: function() {
                                     alert('Error al obtener los datos del préstamo.');
                                 }
                             });
@@ -440,6 +447,10 @@ $rol = $_SESSION['ID_Rol']
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
         crossorigin="anonymous"></script>
+    <script src="js/jquery.dataTables.min.js"></script>
+    <script src="js/feather.min.js"></script>
+    <script src="js/jquery.slimscroll.min.js"></script>
+    <script src="js/script.js"></script>
 
 </body>
 

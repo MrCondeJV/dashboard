@@ -52,12 +52,13 @@ if (!empty($_POST['solicitud_id'])) {
         $fecha_prestamo = date('Y-m-d H:i:s');
         $solicitante = $solicitud->nombre_solicitante;
         $aula_solicitada = $solicitud->aula;
+        $cantidad = $solicitud -> cantidad_personas;
         $correo = $solicitud->correo;
         $fecha_inicio = $solicitud->fecha_inicial;
         $fecha_fin = $solicitud->fecha_final;
         $estado = 'Aprobada';
 
-        $sql_historial = $mysqli->query("INSERT INTO historial (cod_ticket, fecha_prestamo, solicitante, aula_solicitada, fecha_inicial, fecha_final, aprueba, estado) VALUES ('$cod_ticket', '$fecha_prestamo', '$solicitante', '$aula_solicitada', '$fecha_inicio', '$fecha_fin', '$aprueba', '$estado')");
+        $sql_historial = $mysqli->query("INSERT INTO historial (cod_ticket, fecha_prestamo, solicitante, aula_solicitada, cantidad, fecha_inicial, fecha_final, aprueba, estado) VALUES ('$cod_ticket', '$fecha_prestamo', '$solicitante', '$aula_solicitada','$cantidad', '$fecha_inicio', '$fecha_fin', '$aprueba', '$estado')");
         
         if ($sql_historial) {
             $sql_delete = $mysqli->query("DELETE FROM solicitudes WHERE id = '$solicitud_id'");
@@ -68,6 +69,7 @@ if (!empty($_POST['solicitud_id'])) {
                     $cod_ticket,
                     $solicitante,
                     $aula_solicitada,
+                    $cantidad,
                     $fecha_inicio,
                     $fecha_fin,
                     $aprueba

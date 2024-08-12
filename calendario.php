@@ -21,20 +21,32 @@ $eventos = array();
 
 // Recorrer los resultados y agregarlos al array de eventos
 while ($row = $result->fetch_assoc()) {
-    // Formatear el evento para que sea compatible con el calendario
-    // Aquí se asume que las fechas están en formato adecuado para FullCalendar
+    // Formatear el evento para que sea compatible con FullCalendar
     $evento = array(
         'title' => 'Evento de ' . $row['solicitante'] . ' - Aula ' . $row['aula_solicitada'],
         'start' => $row['fecha_inicial'], // Fecha de inicio del evento
         'end' => $row['fecha_final'], // Fecha de fin del evento
-        'color' => '#28a745' // Color verde para las solicitudes aprobadas
+        'color' => '#28a745', // Color verde para las solicitudes aprobadas
+        'extendedProps' => array(
+            'Cod ticket' => $row['cod_ticket'],
+            'Fecha prestamo' => $row['fecha_prestamo'],
+            'Solicitante' => $row['solicitante'],
+            'Aula solicitada' => $row['aula_solicitada'],
+            'Cantidad' => $row['cantidad'],
+            'Fecha inicial' => $row['fecha_inicial'],
+            'Fecha final' => $row['fecha_final'],
+            'Aprueba' => $row['aprueba'],
+            'Estado' => $row['estado']
+        )
     );
 
     // Agregar el evento al array de eventos
     array_push($eventos, $evento);
 }
-?>
 
+// Convertir el array de eventos a formato JSON
+$eventosJson = json_encode($eventos);
+?>
 
 <!DOCTYPE html>
 <html lang="es">
@@ -55,9 +67,11 @@ while ($row = $result->fetch_assoc()) {
 
     <!-- Custom styles for this template-->
     <link href="css/sb-admin-2.min.css" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/fullcalendar@6.1.11/index.global.min.css" rel="stylesheet">
     <script src="https://cdn.jsdelivr.net/npm/fullcalendar@6.1.11/index.global.min.js"></script>
-
-
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 </head>
 
 <body id="page-top">
@@ -86,8 +100,6 @@ while ($row = $result->fetch_assoc()) {
                     <span>Dashboard</span></a>
             </li>
 
-
-
             <!-- Divider -->
             <hr class="sidebar-divider">
 
@@ -96,32 +108,29 @@ while ($row = $result->fetch_assoc()) {
                 Menú
             </div>
 
-
-            <!-- Nav Item - Tables -->
+            <!-- Nav Item - Calendario -->
             <li class="nav-item">
                 <a class="nav-link" href="calendario.php">
                     <i class="fas fa-fw fa-calendar-day"></i>
                     <span>Calendario</span></a>
             </li>
-            <!-- Nav Item - Tables -->
+
+            <!-- Nav Item - Tickets -->
             <li class="nav-item">
                 <a class="nav-link" href="tickets.php">
                     <i class="fas fa-fw fa-tags"></i>
                     <span>Tickets</span></a>
             </li>
 
-            <!-- Nav Item - Tables -->
+            <!-- Nav Item - Historial -->
             <li class="nav-item">
                 <a class="nav-link" href="historial.php">
                     <i class="fas fa-fw fa-sitemap"></i>
                     <span>Historial</span></a>
             </li>
 
-
             <?php if ($rol == 1) { ?>
-
-
-                <!-- Nav Item - Charts -->
+                <!-- Nav Item - Usuarios -->
                 <?php if ($rol != 3) { ?>
                     <li class="nav-item">
                         <a class="nav-link" href="usuarios.php">
@@ -129,9 +138,7 @@ while ($row = $result->fetch_assoc()) {
                             <span>Usuarios</span></a>
                     </li>
                 <?php } ?>
-
             <?php } ?>
-
 
             <!-- Divider -->
             <hr class="sidebar-divider d-none d-md-block">
@@ -141,14 +148,8 @@ while ($row = $result->fetch_assoc()) {
                 <button class="rounded-circle border-0" id="sidebarToggle"></button>
             </div>
 
-
-
         </ul>
         <!-- End of Sidebar -->
-
-        <!-- Formulario -->
-
-        <!-- Fin Formulario -->
 
         <!-- Content Wrapper -->
         <div id="content-wrapper" class="d-flex flex-column">
@@ -164,50 +165,19 @@ while ($row = $result->fetch_assoc()) {
                         <i class="fa fa-bars"></i>
                     </button>
 
-                    <!-- Topbar Search -->
-
-
                     <!-- Topbar Navbar -->
                     <ul class="navbar-nav ml-auto">
-
-                        <!-- Nav Item - Search Dropdown (Visible Only XS) -->
-                        <li class="nav-item dropdown no-arrow d-sm-none">
-                            <a class="nav-link dropdown-toggle" href="#" id="searchDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                <i class="fas fa-search fa-fw"></i>
-                            </a>
-                            <!-- Dropdown - Messages -->
-                            <div class="dropdown-menu dropdown-menu-right p-3 shadow animated--grow-in" aria-labelledby="searchDropdown">
-                                <form class="form-inline mr-auto w-100 navbar-search">
-                                    <div class="input-group">
-                                        <input type="text" class="form-control bg-light border-0 small" placeholder="Search for..." aria-label="Search" aria-describedby="basic-addon2">
-                                        <div class="input-group-append">
-                                            <button class="btn btn-primary" type="button">
-                                                <i class="fas fa-search fa-sm"></i>
-                                            </button>
-                                        </div>
-                                    </div>
-                                </form>
-                            </div>
-                        </li>
-
-                        <!-- Nav Item - Alerts -->
-
-                        <!-- Nav Item - Messages -->
 
                         <div class="topbar-divider d-none d-sm-block"></div>
 
                         <!-- Nav Item - User Information -->
                         <li class="nav-item dropdown no-arrow">
                             <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                <span class="mr-2 d-none d-lg-inline text-gray-600 small"><?php
-                                                                                            echo $nombre;
-
-                                                                                            ?></span>
+                                <span class="mr-2 d-none d-lg-inline text-gray-600 small"><?php echo $nombre; ?></span>
                                 <img class="img-profile rounded-circle" src="img/undraw_profile.svg">
                             </a>
                             <!-- Dropdown - User Information -->
                             <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in" aria-labelledby="userDropdown">
-
                                 <div class="dropdown-divider"></div>
                                 <a class="dropdown-item" href="./cerrar_sesion.php" data-toggle="modal" data-target="#logoutModal">
                                     <i class="fas fa-sign-out-alt fa-sm fa-fw mr-2 text-gray-400"></i>
@@ -227,12 +197,9 @@ while ($row = $result->fetch_assoc()) {
                     <!-- Page Heading -->
                     <div class="d-sm-flex align-items-center justify-content-between mb-4">
                         <h1 class="h3 mb-0 text-gray-800">Calendario</h1>
-
                     </div>
 
-
-                    <!-- Begin Page Content -->
-
+                    <!-- Calendar Card -->
                     <div class="card mt-3 shadow p-3 mb-5 bg-body-tertiary rounded border-left-info">
                         <div id='calendar'></div>
                     </div>
@@ -258,72 +225,51 @@ while ($row = $result->fetch_assoc()) {
                         </div>
                     </div>
 
-                    <!-- Tu código existente para el pie de página y los scripts -->
-
-                    <!-- Script adicional para inicializar el calendario con los eventos y manejar clics en los eventos -->
+                    <!-- Script para inicializar el calendario y manejar clics en los eventos -->
                     <script>
                         document.addEventListener('DOMContentLoaded', function() {
                             const calendarEl = document.getElementById('calendar');
                             const calendar = new FullCalendar.Calendar(calendarEl, {
                                 initialView: 'dayGridMonth',
-                                events: <?php echo json_encode($eventos); ?>,
+                                events: <?php echo $eventosJson; ?>,
                                 eventClick: function(info) {
-                                    const titleParts = info.event.title.split(' - ');
-                                    const solicitante = titleParts[0].split('Evento de ')[1];
-                                    const aula = titleParts[1].split('Aula ')[1];
+                                    const extendedProps = info.event.extendedProps;
+                                    let details = '<ul>';
+                                    for (const [key, value] of Object.entries(extendedProps)) {
+                                        details += `<li><strong>${key}:</strong> ${value}</li>`;
+                                    }
+                                    details += '</ul>';
 
-                                    $.ajax({
-                                        url: 'detalles_solicitud.php',
-                                        type: 'POST',
-                                        data: {
-                                            solicitante: solicitante,
-                                            aula: aula
-                                        },
-                                        success: function(response) {
-                                            $('#detalleSolicitud').html(response);
-                                            $('#solicitudModal').modal('show');
-                                        },
-                                        error: function(xhr, status, error) {
-                                            console.error(xhr.responseText);
-                                        }
-                                    });
+                                    $('#detalleSolicitud').html(details);
+                                    $('#solicitudModal').modal('show');
                                 }
                             });
                             calendar.render();
                         });
                     </script>
-
-
-
                 </div>
-
                 <!-- /.container-fluid -->
-
-                <!-- End of Main Content -->
 
                 <!-- Footer -->
                 <footer class="sticky-footer bg-white">
                     <div class="container my-auto">
                         <div class="copyright text-center my-auto">
-                            <span>Copyright &copy; División de Tecnologías de la Información y de las
-                                Comunicaciones ESFIM </span>
+                            <span>Copyright &copy; División de Tecnologías de la Información y de las Comunicaciones ESFIM</span>
                         </div>
                     </div>
                 </footer>
                 <!-- End of Footer -->
-
             </div>
             <!-- End of Content Wrapper -->
-
         </div>
         <!-- End of Page Wrapper -->
 
-        <!-- Scroll to Top Button-->
+        <!-- Scroll to Top Button -->
         <a class="scroll-to-top rounded" href="#page-top">
             <i class="fas fa-angle-up"></i>
         </a>
 
-        <!-- Logout Modal-->
+        <!-- Logout Modal -->
         <div class="modal fade" id="logoutModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
             <div class="modal-dialog" role="document">
                 <div class="modal-content">
@@ -333,8 +279,7 @@ while ($row = $result->fetch_assoc()) {
                             <span aria-hidden="true">×</span>
                         </button>
                     </div>
-                    <div class="modal-body">Seleccione "Cerrar sesión" a continuación si está listo para finalizar su
-                        sesión actual.</div>
+                    <div class="modal-body">Seleccione "Cerrar sesión" a continuación si está listo para finalizar su sesión actual.</div>
                     <div class="modal-footer">
                         <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancelar</button>
                         <a class="btn btn-primary" href="./cerrar_sesion.php">Cerrar Sesión</a>
@@ -343,14 +288,14 @@ while ($row = $result->fetch_assoc()) {
             </div>
         </div>
 
-        <!-- Bootstrap core JavaScript-->
+        <!-- Bootstrap core JavaScript -->
         <script src="vendor/jquery/jquery.min.js"></script>
         <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
 
-        <!-- Core plugin JavaScript-->
+        <!-- Core plugin JavaScript -->
         <script src="vendor/jquery-easing/jquery.easing.min.js"></script>
 
-        <!-- Custom scripts for all pages-->
+        <!-- Custom scripts for all pages -->
         <script src="js/sb-admin-2.min.js"></script>
 
         <!-- Page level plugins -->
@@ -360,7 +305,5 @@ while ($row = $result->fetch_assoc()) {
         <script src="js/demo/chart-area-demo.js"></script>
         <script src="js/demo/chart-pie-demo.js"></script>
 
-
 </body>
-
 </html>
